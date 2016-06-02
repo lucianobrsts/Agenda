@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/modeloSistema.xhtml">
+
+	<ui:define name="menu">
+		<ui:include src="/include/menuPrincipal.xhtml" />
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form id="formUsuarioListagem">
+			<p:dataTable emptyMessage="Nenhum registro encontrado!"
+				widgetVar="tabUsuario" value="#{MBUsuario.itens}" var="item"
+				filteredValue="#{MBUsuario.itensFiltrados}" rows="10"
+				paginator="true" id="tabelaUsuario">
+
+				<f:facet name="header">
+					Usuario - Listagem
+				</f:facet>
+
+				<p:column headerText="Código" styleClass="text">
+					<h:outputText value="#{item.codigo}" />
+				</p:column>
+
+				<p:column headerText="Nome" sortBy="#{item.nome}"
+					filterBy="#{item.nome}">
+					<h:outputText value="#{item.nome}" />
+				</p:column>
+
+				<p:column headerText="senha" styleClass="text">
+					<h:outputText value="#{item.senha}" />
+				</p:column>
+
+				<p:column headerText="Opções" style="text-align:center">
+					<p:commandButton icon="ui-icon-trash"
+						oncomplete="PF('dialogoUsuarioExcluir').show();"
+						update=":formUsuarioExcluir:panelUsuarioExcluir">
+
+						<f:setPropertyActionListener value="#{item}"
+							target="#{MBUsuario.usuario}" />
+					</p:commandButton>
+
+					<p:commandButton icon="ui-icon-pencil"
+						oncomplete="PF('dialogoUsuarioEditar').show();"
+						update=":formUsuarioEditar:panelUsuarioEditar">
+
+						<f:setPropertyActionListener value="#{item}"
+							target="#{MBUsuario.usuario}" />
+					</p:commandButton>
+				</p:column>
+
+				<f:facet name="footer">
+					<p:commandButton icon="ui-icon-plus" value="Novo"
+						actionListener="#{MBUsuario.prepararNovo}"
+						oncomplete="PF('dialogoUsuarioNovo').show();"
+						update=":formUsuarioNovo:panelUsuarioNovo" />
+				</f:facet>
+			</p:dataTable>
+		</h:form>
+
+		<p:dialog widgetVar="dialogoUsuarioNovo" closable="false"
+			draggable="false" resizable="false" header="Usuario - Novo"
+			modal="true" appendTo="@(body)">
+			<h:form id="formUsuarioNovo">
+				<h:panelGrid id="panelUsuarioNovo" columns="2">
+					<h:outputLabel value="Nome:" />
+					<h:inputText maxlength="20" size="20" required="true"
+						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
+						value="#{MBUsuario.usuario.nome}"
+						requiredMessage="Nome do usuário obrigatório!" />
+
+					<h:outputLabel value="Senha:" />
+					<h:inputText maxlength="8" size="8"
+						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
+						value="#{MBUsuario.usuario.senha}" required="true"
+						requiredMessage="Senha do usuário obrigatório!" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton icon="ui-icon-disk" value="Gravar"
+						actionListener="#{MBUsuario.novo}"
+						oncomplete="PF('dialogoUsuarioNovo').hide(); tabUsuario.clearFilters(); PF('tabelaUsuario'.clearFilters();)"
+						update=":formUsuarioListagem:tabelaUsuario :mensagemGlobal" />
+
+					<p:commandButton icon="ui-icon-close" value="Cancelar"
+						onclick="PF('dialogoUsuarioNovo').hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+
+		<p:dialog widgetVar="dialogoUsuarioExcluir" closable="false"
+			draggable="false" resizable="false" modal="true"
+			header="Usuário - Excluir" appendTo="@(body)">
+
+			<h:form id="formUsuarioExcluir">
+				<p:panelGrid columns="2" id="panelUsuarioExcluir"
+					styleClass="panelEditar">
+					<h:outputLabel value="Código:" />
+					<h:outputText value="#{MBUsuario.usuario.codigo}" />
+
+					<h:outputLabel value="Nome:" />
+					<h:outputText value="#{MBUsuario.usuario.nome}" />
+				</p:panelGrid>
+
+				<p:panelGrid columns="2" styleClass="panelEditar">
+					<p:commandButton icon="ui-icon-trash" value="Excluir"
+						actionListener="#{MBUsuario.excluir}"
+						oncomplete="PF('dialogoUsuarioExcluir').hide(); tabUsuario.clearFilters(); PF('tabelaUsuario'.clearFilters();"
+						update=":formUsuarioListagem:tabelaUsuario :mensagemGlobal" />
+
+					<p:commandButton icon="ui-icon-close" value="Cancelar"
+						onclick="PF('dialogoUsuarioExcluir').hide();" />
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+
+		<p:dialog widgetVar="dialogoUsuarioEditar" closable="false"
+			draggable="false" resizable="false" modal="true"
+			header="Usuário - Editar" appendTo="@(body)">
+
+			<h:form id="formUsuarioEditar">
+				<p:panelGrid columns="2" id="panelUsuarioEditar"
+					styleClass="panelEditar">
+					<h:outputLabel value="Código:" />
+					<h:outputText value="#{MBUsuario.usuario.codigo}" />
+
+					<h:outputLabel value="Nome:" />
+					<h:inputText value="#{MBUsuario.usuario.nome}"
+						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all" />
+
+					<h:outputLabel value="Senha:" />
+					<h:inputText value="#{MBUsuario.usuario.senha}"
+						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all" />
+				</p:panelGrid>
+
+				<p:panelGrid>
+					<p:commandButton icon="ui-icon-pencil" value="Editar"
+						actionListener="#{MBUsuario.editar}"
+						oncomplete="PF('dialogoUsuarioEditar').hide(); tabUsuario.clearFilters(); PF('tabelaUsuario'.clearFilters();"
+						update=":formUsuarioListagem:tabelaUsuario :mensagemGlobal" />
+
+					<p:commandButton icon="ui-icon-close" value="Cancelar"
+						onclick="PF('dialogoUsuarioEditar').hide();" />
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+
+		<p:dialog header="Agenda Java 1.0" widgetVar="dialogoSobre"
+			modal="true" height="350" width="600" appendTo="@(body)"
+			draggable="false" resizable="false">
+
+			<p:panelGrid columns="2" styleClass="panelEditar">
+				<h:graphicImage value="/images/agenda.png" width="200" height="200"
+					id="image" />
+
+				<h3>Sobre a Agenda Java</h3>
+
+				<h5>Versão 1.0</h5>
+
+				<p>Lorem Ipsum is simply dummy text of the printing and
+					typesetting industry. Lorem Ipsum has been the industry's standard
+					dummy text ever since the 1500s.</p>
+			</p:panelGrid>
+
+			<p:panelGrid columns="3" styleClass="panelEditarSobre">
+
+				<h:outputText value="Todos os direitos reservados" />
+				<h:outputText value="Direitos do Usuário Final" />
+				<h:outputText value="Política de Privacidade do Usuário" />
+
+			</p:panelGrid>
+		</p:dialog>
+	</ui:define>
+</ui:composition>

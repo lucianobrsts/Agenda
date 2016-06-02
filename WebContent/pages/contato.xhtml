@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/modeloSistema.xhtml">
+
+	<ui:define name="menu">
+		<ui:include src="/include/menuPrincipal.xhtml" />
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form id="formContatoListagem">
+			<p:dataTable emptyMessage="Nenhum registro encontrado!"
+				widgetVar="tabContato" value="#{MBContato.itens}" var="item"
+				filteredValue="#{MBContato.itensFiltrados}" rows="10"
+				paginator="true" id="tabelaContato">
+
+				<f:facet name="header">
+					Contato - Listagem
+				</f:facet>
+
+				<p:column headerText="Código" sortBy="#{item.codigo}"
+					styleClass="textContato" width="70">
+					<h:outputText value="#{item.codigo}" />
+				</p:column>
+
+				<p:column headerText="Nome" sortBy="#{item.nome}"
+					filterBy="#{item.nome}">
+					<h:outputText value="#{item.nome}" />
+				</p:column>
+
+				<p:column headerText="Endereço">
+					<h:outputText value="#{item.endereco}" />
+				</p:column>
+
+				<p:column headerText="Fone Fixo" width="100">
+					<h:outputText value="#{item.telefoneFixo}" />
+				</p:column>
+
+				<p:column headerText="Celular" width="110">
+					<h:outputText value="#{item.celular}" />
+				</p:column>
+
+				<p:column headerText="E-mail" width="180">
+					<h:outputText value="#{item.email}" />
+				</p:column>
+
+				<p:column headerText="Profissão" sortBy="#{item.profissao}"
+					filterBy="#{item.profissao}">
+					<h:outputText value="#{item.profissao}" />
+				</p:column>
+
+				<p:column headerText="Empresa">
+					<h:outputText value="#{item.empresa}" />
+				</p:column>
+
+				<p:column headerText="Aniversário" styleClass="textContato"
+					width="80">
+					<h:outputText value="#{item.dataNascimento}" />
+				</p:column>
+
+				<p:column headerText="Opções" width="60">
+					<p:commandButton icon="ui-icon-trash"
+						oncomplete="PF('dialogoContatoExcluir').show();"
+						update=":formContatoExcluir:panelContatoExcluir">
+
+						<f:setPropertyActionListener target="#{MBContato.contato}"
+							value="#{item}" />
+					</p:commandButton>
+
+					<p:commandButton icon="ui-icon-pencil"
+						oncomplete="PF('dialogoContatoEditar').show();"
+						update=":formContatoEditar:panelContatoEditar">
+
+						<f:setPropertyActionListener value="#{item}"
+							target="#{MBContato.contato}" />
+					</p:commandButton>
+				</p:column>
+
+				<f:facet name="footer">
+					<p:commandButton icon="ui-icon-plus" value="Novo"
+						actionListener="#{MBContato.prepararNovo}"
+						oncomplete="PF('dialogoContatoNovo').show();"
+						update=":formContatoNovo:panelContatoNovo" />
+				</f:facet>
+			</p:dataTable>
+		</h:form>
+
+		<p:dialog widgetVar="dialogoContatoNovo" closable="false"
+			draggable="false" resizable="false" header="Contato - Novo"
+			modal="true" appendTo="@(body)">
+
+			<h:form id="formContatoNovo">
+				<h:panelGrid id="panelContatoNovo" columns="2">
+					<h:outputLabel value="Nome:" />
+					<h:inputText maxlength="45" size="30"
+						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
+						value="#{MBContato.contato.nome}" required="true"
+						requiredMessage="Nome do contato obrigatório!" />
+
+					<h:outputLabel value="Endereco:" />
+					<h:inputText maxlength="45" size="30"
+						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
+						value="#{MBContato.contato.endereco}" />
+
+					<h:outputLabel value="Telefone Fixo:" />
+					<p:inputMask id="telefoneFixo" mask="(99) 9999-9999" maxlength="14"
+						size="20" value="#{MBContato.contato.telefoneFixo}" />
+
+					<h:outputLabel value="Celular:" />
+					<p:inputMask mask="(99) 99999-9999" maxlength="14" size="20"
+						value="#{MBContato.contato.celular}" required="true"
+						requiredMessage="Celular do contato obirgatório!" />
+
+					<h:outputLabel value="Email:" />
+					<h:inputText maxlength="45" size="30"
+						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
+						value="#{MBContato.contato.email}" />
+
+					<h:outputLabel value="Profissão:" />
+					<h:inputText maxlength="45" size="30"
+						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
+						value="#{MBContato.contato.profissao}" />
+
+					<h:outputLabel value="Empresa:" />
+					<h:inputText maxlength="45" size="30"
+						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
+						value="#{MBContato.contato.empresa}" />
+
+					<h:outputLabel value="Data Nascimento:" />
+					<p:inputMask maxlength="10" size="15" mask="99/99/9999"
+						value="#{MBContato.contato.dataNascimento}" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton icon="ui-icon-disk" value="Gravar"
+						actionListener="#{MBContato.novo}"
+						oncomplete="PF('dialogoContatoNovo').hide(); tabContato.clearFilters(); PF('tabelaContato'.clearFilters();)"
+						update=":formContatoListagem:tabelaContato :mensagemGlobal" />
+
+					<p:commandButton icon="ui-icon-close" value="Cancelar"
+						onclick="PF('dialogoContatoNovo').hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+
+		<p:dialog widgetVar="dialogoContatoExcluir" closable="false"
+			draggable="false" resizable="false" modal="true"
+			header="Contato - Excluir" appendTo="@(body)">
+
+			<h:form id="formContatoExcluir">
+				<h:panelGrid columns="2" id="panelContatoExcluir">
+					<h:outputLabel value="Código:" />
+					<h:outputText value="#{MBContato.contato.codigo}" />
+
+					<h:outputLabel value="Nome:" />
+					<h:outputText value="#{MBContato.contato.nome}" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton icon="ui-icon-trash" value="Excluir"
+						actionListener="#{MBContato.excluir}"
+						oncomplete="PF('dialogoContatoExcluir').hide(); tabContato.clearFilters(); PF('tabelaContato'.clearFilters();"
+						update=":formContatoListagem:tabelaContato :mensagemGlobal" />
+
+					<p:commandButton icon="ui-icon-close" value="Cancelar"
+						onclick="PF('dialogoContatoExcluir').hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+
+		<p:dialog widgetVar="dialogoContatoEditar" closable="false"
+			draggable="false" resizable="false" modal="true" appendTo="@(body)"
+			header="Contato - Editar">
+
+			<h:form id="formContatoEditar">
+				<p:panelGrid columns="2" id="panelContatoEditar"
+					styleClass="panelEditar">
+					<h:outputLabel value="Código:" />
+					<h:outputText value="#{MBContato.contato.codigo}" />
+
+					<h:outputLabel value="Nome:" />
+					<h:inputText maxlength="45" size="30"
+						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
+						value="#{MBContato.contato.nome}" />
+
+					<h:outputLabel value="Endereco:" />
+					<h:inputText maxlength="45" size="30"
+						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
+						value="#{MBContato.contato.endereco}" />
+
+					<h:outputLabel value="Telefone Fixo:" />
+					<p:inputMask mask="(99) 9999-9999" id="fonefixo" maxlength="13"
+						size="20" value="#{MBContato.contato.telefoneFixo}" />
+
+					<h:outputLabel value="Celular:" />
+					<p:inputMask mask="(99) 99999-9999" maxlength="14" size="20"
+						value="#{MBContato.contato.celular}" />
+
+					<h:outputLabel value="Email:" />
+					<h:inputText maxlength="45" size="30"
+						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
+						value="#{MBContato.contato.email}" />
+
+					<h:outputLabel value="Profissão:" />
+					<h:inputText maxlength="45" size="30"
+						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
+						value="#{MBContato.contato.profissao}" />
+
+					<h:outputLabel value="Empresa:" />
+					<h:inputText maxlength="45" size="30"
+						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
+						value="#{MBContato.contato.empresa}" />
+
+					<h:outputLabel value="Data Nascimento:" />
+					<p:inputMask mask="99/99/9999" maxlength="10" size="15"
+						value="#{MBContato.contato.dataNascimento}" />
+				</p:panelGrid>
+
+				<p:panelGrid columns="2" styleClass="panelEditar">
+					<p:commandButton icon="ui-icon-pencil" value="Editar"
+						actionListener="#{MBContato.editar}"
+						oncomplete="PF('dialogoContatoEditar').hide(); tabContato.clearFilters(); PF('tabelaContato'.clearFilters();"
+						update=":formContatoListagem:tabelaContato :mensagemGlobal" />
+
+					<p:commandButton icon="ui-icon-close" value="Cancelar"
+						onclick="PF('dialogoContatoEditar').hide();" />
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+
+		<p:dialog header="Agenda Java 1.0" widgetVar="dialogoSobre"
+			modal="true" height="350" width="600" appendTo="@(body)"
+			draggable="false" resizable="false">
+
+			<p:panelGrid columns="2" styleClass="panelEditar">
+				<h:graphicImage value="/images/agenda.png" width="200" height="200"
+					id="image" />
+
+				<h3>Sobre a Agenda Java</h3>
+
+				<h5>Versão 1.0</h5>
+
+				<p>Lorem Ipsum is simply dummy text of the printing and
+					typesetting industry. Lorem Ipsum has been the industry's standard
+					dummy text ever since the 1500s.</p>
+			</p:panelGrid>
+
+			<p:panelGrid columns="3" styleClass="panelEditarSobre">
+
+				<h:outputText value="Todos os direitos reservados" />
+				<h:outputText value="Direitos do Usuário Final" />
+				<h:outputText value="Política de Privacidade do Usuário" />
+
+			</p:panelGrid>
+		</p:dialog>
+	</ui:define>
+</ui:composition>

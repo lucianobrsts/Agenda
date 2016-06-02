@@ -1,0 +1,49 @@
+@CHARSET "ISO-8859-1";
+
+.ui-layout-north {
+	z-index: 20 !important;
+	overflow: visible !important;;
+}
+
+.ui-layout-north .ui-layout-unit-content {
+	overflow: visible !important;
+}
+
+.ui-widget, .ui-widget .ui-widget {
+	font-size: 12px !important;
+}
+
+.panelEditar td {
+	border: none;
+	border-style: hidden !important;
+}
+
+.panelEditarSobre td {
+	border: none;
+	border-style: hidden !important;
+	font-size: 11px;
+}
+
+.panelEditarSobre {
+	border:none;
+	border-style: hidden !important;
+	margin-top: 65px;
+}
+
+.text {
+	text-align: center;
+	width: 100px;
+}
+
+.textContato {
+	text-align: center;
+	width: 100px;	
+}
+
+.imagemPrincipal {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -150px;
+	margin-top: -150px;
+}
