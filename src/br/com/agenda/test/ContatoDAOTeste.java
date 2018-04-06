@@ -13,25 +13,27 @@ public class ContatoDAOTeste {
 	@Test
 	@Ignore
 	public void salvar() throws SQLException {
-		Contato c = new Contato();
-		c.setNome("Luciano Brito");
-		c.setEndereco("Rua Goiás, 674");
-		c.setTelefoneFixo("85 3482-3844");
-		c.setCelular("85 988880281");
-		c.setEmail("lucianobrsts@yahoo.com.br");
-		c.setProfissao("Programador");
-		c.setEmpresa("Pague Menos");
-		c.setDataNascimento("20/07/1975");
+		Contato contato = new Contato();
+		contato.setNome("Luciano Brito");
+		contato.setEndereco("Rua Goiás, 674");
+		contato.setTelefone("85 3482-3844");
+		contato.setCelular("85 988880281");
+		contato.setEmail("lucianobrsts@yahoo.com.br");
+		contato.setProfissao("Programador");
+		contato.setEmpresa("Pague Menos");
+		contato.setDataNascimento("20/07/1975");
+		contato.setDataCadastro("06/04/2018");
+		contato.setObservacao("Estudante de Arquitetura de software na Uni7");
 
 		ContatoDAO contatodao = new ContatoDAO();
-		contatodao.salvar(c);
+		contatodao.salvar(contato);
 	}
 
 	@Test
 	@Ignore
 	public void excluir() throws SQLException {
 		Contato c = new Contato();
-		c.setCodigo(22L);
+		c.setIdContato(2L);
 
 		ContatoDAO contatodao = new ContatoDAO();
 		contatodao.excluir(c);
@@ -40,15 +42,16 @@ public class ContatoDAOTeste {
 	@Test
 	public void editar() throws SQLException {
 		Contato c = new Contato();
-		c.setCodigo(20L);
+		c.setIdContato(1L);
 		c.setNome("Luciana Brito");
 		c.setEndereco("Rua Goiás, 670");
-		c.setTelefoneFixo("85 3482-3844");
+		c.setTelefone("85 3482-3844");
 		c.setCelular("85 988880281");
 		c.setEmail("lucianabrsts@yahoo.com.br");
 		c.setProfissao("Vendedora");
 		c.setEmpresa("Z'Dannys Variedades");
 		c.setDataNascimento("20/07/1975");
+		c.setObservacao("Estudante de desenvolvimento na FIC");
 
 		ContatoDAO contatodao = new ContatoDAO();
 		contatodao.editar(c);

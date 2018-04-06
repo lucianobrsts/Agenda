@@ -14,8 +14,8 @@ public class ContatoDAO {
 	public void salvar(Contato c) throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append("INSERT INTO contato ");
-		sql.append("(nome, endereco, telefone, celular, profissao, email, empresa, dataNascimento, dataCadastro) ");
-		sql.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? )");
+		sql.append("(nome, endereco, telefone, celular, profissao, email, empresa, datanascimento, datacadastro, observacao) ");
+		sql.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ? )");
 
 		Connection conexao = ConexaoFactory.conectar();
 
@@ -30,6 +30,7 @@ public class ContatoDAO {
 		comando.setString(7, c.getEmpresa());
 		comando.setString(8, c.getDataNascimento());
 		comando.setString(9, c.getDataCadastro());
+		comando.setString(10, c.getObservacao());
 
 		comando.executeUpdate();
 	}
@@ -52,7 +53,7 @@ public class ContatoDAO {
 		StringBuilder sql = new StringBuilder();
 		sql.append("UPDATE agenda.contato ");
 		sql.append(
-				"SET nome = ?, endereco = ?, telefone = ?, celular = ?, profissao = ?, email = ?, empresa = ?, dataNascimento = ?, dataCadastro = ? ");
+				"SET nome = ?, endereco = ?, telefone = ?, celular = ?, profissao = ?, email = ?, empresa = ?, dataNascimento = ?, dataCadastro = ?, observacao = ? ");
 		sql.append("WHERE idcontato = ?");
 
 		Connection conexao = ConexaoFactory.conectar();
@@ -67,7 +68,8 @@ public class ContatoDAO {
 		comando.setString(7, c.getEmpresa());
 		comando.setString(8, c.getDataNascimento());
 		comando.setString(9, c.getDataCadastro());
-		comando.setLong(10, c.getIdContato());
+		comando.setString(10, c.getObservacao());
+		comando.setLong(11, c.getIdContato());
 
 		comando.executeUpdate();
 	}
@@ -76,7 +78,7 @@ public class ContatoDAO {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT idContato, nome, celular ");
 		sql.append("FROM  agenda.contato ");
-		sql.append("WHERE idcontato = ?");
+		sql.append("WHERE idcontato = ? ");
 
 		Connection conexao = ConexaoFactory.conectar();
 
@@ -99,7 +101,7 @@ public class ContatoDAO {
 	public ArrayList<Contato> listar() throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append(
-				"SELECT idcontato, nome, endereco, telefone, celular, profissao, email, empresa, dataNascimento, datacadastro ");
+				"SELECT idcontato, nome, endereco, telefone, celular, profissao, email, empresa, dataNascimento, datacadastro, observacao ");
 		sql.append("FROM agenda.contato ");
 		sql.append("ORDER BY nome ASC ");
 
@@ -123,6 +125,7 @@ public class ContatoDAO {
 			c.setEmpresa(resultado.getString("empresa"));
 			c.setDataNascimento(resultado.getString("dataNascimento"));
 			c.setDataCadastro(resultado.getString("datacadastro"));
+			c.setObservacao(resultado.getString("observacao"));
 
 			lista.add(c);
 		}
@@ -132,7 +135,7 @@ public class ContatoDAO {
 	public ArrayList<Contato> buscarPorNome(Contato c) throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append(
-				"SELECT idcontato, nome, endereco, telefone, celular, profissao, email, empresa, dataNascimento, dataCadastro ");
+				"SELECT idcontato, nome, endereco, telefone, celular, profissao, email, empresa, dataNascimento, dataCadastro, observacao ");
 		sql.append("FROM agenda.contato ");
 		sql.append("WHERE nome LIKE ?");
 		sql.append("ORDER BY nome ASC ");
@@ -158,6 +161,7 @@ public class ContatoDAO {
 			item.setEmpresa(resultado.getString("empresa"));
 			item.setDataNascimento(resultado.getString("dataNascimento"));
 			item.setDataCadastro(resultado.getString("dataCadastro"));
+			item.setObservacao(resultado.getString("observacao"));
 
 			lista.add(item);
 		}

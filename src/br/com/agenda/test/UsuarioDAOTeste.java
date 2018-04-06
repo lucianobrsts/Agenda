@@ -40,7 +40,7 @@ public class UsuarioDAOTeste {
 	@Ignore
 	public void excluir() throws SQLException {
 		Usuario u = new Usuario();
-		u.setCodigo(8L);
+		u.setIdUsuario(8L);
 
 		UsuarioDAO userdao = new UsuarioDAO();
 		userdao.excluir(u);
