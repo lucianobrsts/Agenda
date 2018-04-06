@@ -12,10 +12,10 @@
 				outcome="/pages/principal.xhtml" />
 
 			<p:menuitem icon="ui-icon-note" value="Contatos"
-				outcome="/pages/contato.xhtml" rendered="#{autenticacaoBean.usuarioLogado.nome != null}" />
+				outcome="/pages/contato.xhtml" />
 
 			<p:menuitem icon="ui-icon-person" value="Usuários"
-				outcome="/pages/usuario.xhtml" rendered="#{autenticacaoBean.usuarioLogado.nome != null}"/>
+				outcome="/pages/usuario.xhtml"/>
 
 			<p:menuitem icon="ui-icon-comment" value="Sobre"
 				onclick="PF('dialogoSobre').show();" />

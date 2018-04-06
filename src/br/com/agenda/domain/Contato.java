@@ -2,22 +2,23 @@ package br.com.agenda.domain;
 
 public class Contato {
 
-	private Long codigo;
+	private Long idContato;
 	private String nome;
 	private String endereco;
-	private String telefoneFixo;
+	private String telefone;
 	private String celular;
 	private String profissao;
 	private String email;
 	private String empresa;
 	private String dataNascimento;
+	private String dataCadastro;
 
-	public Long getCodigo() {
-		return codigo;
+	public Long getIdContato() {
+		return idContato;
 	}
 
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
+	public void setIdContato(Long idContato) {
+		this.idContato = idContato;
 	}
 
 	public String getNome() {
@@ -36,12 +37,12 @@ public class Contato {
 		this.endereco = endereco;
 	}
 
-	public String getTelefoneFixo() {
-		return telefoneFixo;
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public void setTelefoneFixo(String telefoneFixo) {
-		this.telefoneFixo = telefoneFixo;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 	public String getCelular() {
@@ -84,9 +85,17 @@ public class Contato {
 		this.dataNascimento = dataNascimento;
 	}
 
+	public String getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(String dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
+
 	@Override
 	public String toString() {
-		String impressao = "\nCódigo: " + codigo + "\nNome: " + nome + "\nCelular: " + celular;
+		String impressao = "\nCódigo: " + idContato + "\nNome: " + nome + "\nCelular: " + celular;
 		return impressao;
 	}
 }

@@ -2,16 +2,16 @@ package br.com.agenda.domain;
 
 public class Usuario {
 
-	private Long codigo;
+	private Long idUsuario;
 	private String nome;
 	private String senha;
 
-	public Long getCodigo() {
-		return codigo;
+	public Long getIdUsuario() {
+		return idUsuario;
 	}
 
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
+	public void setIdUsuario(Long codigo) {
+		this.idUsuario = codigo;
 	}
 
 	public String getNome() {
@@ -32,7 +32,7 @@ public class Usuario {
 	
 	@Override
 	public String toString() {
-		return "Nome: " + nome + "\nSenha: " + senha ;
+		return "Código" + idUsuario + "\nNome: " + nome + "\nSenha: " + senha ;
 	}
 	
 }
