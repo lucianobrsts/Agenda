@@ -14,6 +14,17 @@ public class UsuarioDAOTeste {
 
 	@Test
 	@Ignore
+	public void salvar() throws SQLException {
+		Usuario u = new Usuario();
+		u.setNome("Tereza Cristina");
+		u.setSenha("123");
+
+		UsuarioDAO userdao = new UsuarioDAO();
+		userdao.salvar(u);
+	}
+
+	@Test
+	@Ignore
 	public void listar() throws SQLException {
 		UsuarioDAO userdao = new UsuarioDAO();
 
@@ -22,18 +33,6 @@ public class UsuarioDAOTeste {
 		for (Usuario u : lista) {
 			System.out.println("Resultado: " + u);
 		}
-	}
-
-	@Test
-	@Ignore
-	public void salvar() throws SQLException {
-		Usuario u = new Usuario();
-		u.setNome("Tereza Cristina");
-		u.setSenha("123");
-
-		UsuarioDAO userdao = new UsuarioDAO();
-		userdao.salvar(u);
-
 	}
 
 	@Test
@@ -47,6 +46,7 @@ public class UsuarioDAOTeste {
 	}
 
 	@Test
+	@Ignore
 	public void autenticar() throws SQLException {
 
 		Usuario u = new Usuario();
@@ -56,8 +56,8 @@ public class UsuarioDAOTeste {
 		UsuarioDAO userdao = new UsuarioDAO();
 		Usuario u2 = userdao.autenticar(u);
 
-		//System.out.println("Autenticado: " + u2);
-		
+		// System.out.println("Autenticado: " + u2);
+
 		Assert.assertNotNull(u2);
 	}
 

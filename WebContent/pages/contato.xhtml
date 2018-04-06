@@ -12,6 +12,7 @@
 	</ui:define>
 
 	<ui:define name="conteudo">
+	<!-- Listagem de Contatos - Table -->
 		<h:form id="formContatoListagem">
 			<p:dataTable emptyMessage="Nenhum registro encontrado!"
 				widgetVar="tabContato" value="#{MBContato.itens}" var="item"
@@ -22,9 +23,9 @@
 					Contato - Listagem
 				</f:facet>
 
-				<p:column headerText="Código" sortBy="#{item.codigo}"
+				<p:column headerText="Código" sortBy="#{item.idContato}"
 					styleClass="textContato" width="70">
-					<h:outputText value="#{item.codigo}" />
+					<h:outputText value="#{item.idContato}" />
 				</p:column>
 
 				<p:column headerText="Nome" sortBy="#{item.nome}"
@@ -37,7 +38,7 @@
 				</p:column>
 
 				<p:column headerText="Fone Fixo" width="100">
-					<h:outputText value="#{item.telefoneFixo}" />
+					<h:outputText value="#{item.telefone}" />
 				</p:column>
 
 				<p:column headerText="Celular" width="110">
@@ -58,8 +59,12 @@
 				</p:column>
 
 				<p:column headerText="Aniversário" styleClass="textContato"
-					width="80">
+					width="60">
 					<h:outputText value="#{item.dataNascimento}" />
+				</p:column>
+				
+				<p:column headerText="Cadastro" styleClass="textContato" width="60">
+					<h:outputText value="#{item.dataCadastro}" />
 				</p:column>
 
 				<p:column headerText="Opções" width="60">
@@ -108,7 +113,7 @@
 
 					<h:outputLabel value="Telefone Fixo:" />
 					<p:inputMask id="telefoneFixo" mask="(99) 9999-9999" maxlength="14"
-						size="20" value="#{MBContato.contato.telefoneFixo}" />
+						size="20" value="#{MBContato.contato.telefone}" />
 
 					<h:outputLabel value="Celular:" />
 					<p:inputMask mask="(99) 99999-9999" maxlength="14" size="20"
@@ -154,7 +159,7 @@
 			<h:form id="formContatoExcluir">
 				<h:panelGrid columns="2" id="panelContatoExcluir">
 					<h:outputLabel value="Código:" />
-					<h:outputText value="#{MBContato.contato.codigo}" />
+					<h:outputText value="#{MBContato.contato.idContato}" />
 
 					<h:outputLabel value="Nome:" />
 					<h:outputText value="#{MBContato.contato.nome}" />
@@ -180,7 +185,7 @@
 				<p:panelGrid columns="2" id="panelContatoEditar"
 					styleClass="panelEditar">
 					<h:outputLabel value="Código:" />
-					<h:outputText value="#{MBContato.contato.codigo}" />
+					<h:outputText value="#{MBContato.contato.idContato}" />
 
 					<h:outputLabel value="Nome:" />
 					<h:inputText maxlength="45" size="30"
@@ -194,7 +199,7 @@
 
 					<h:outputLabel value="Telefone Fixo:" />
 					<p:inputMask mask="(99) 9999-9999" id="fonefixo" maxlength="13"
-						size="20" value="#{MBContato.contato.telefoneFixo}" />
+						size="20" value="#{MBContato.contato.telefone}" />
 
 					<h:outputLabel value="Celular:" />
 					<p:inputMask mask="(99) 99999-9999" maxlength="14" size="20"
