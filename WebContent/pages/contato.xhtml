@@ -12,11 +12,11 @@
 	</ui:define>
 
 	<ui:define name="conteudo">
-	<!-- Listagem de Contatos - Table -->
+		<!-- Listagem de Contatos - Table -->
 		<h:form id="formContatoListagem">
 			<p:dataTable emptyMessage="Nenhum registro encontrado!"
-				widgetVar="tabContato" value="#{MBContato.itens}" var="item"
-				filteredValue="#{MBContato.itensFiltrados}" rows="10"
+				widgetVar="tabelaContatoListagem" value="#{MBContato.itens}"
+				var="item" filteredValue="#{MBContato.itensFiltrados}" rows="10"
 				paginator="true" id="tabelaContato">
 
 				<f:facet name="header">
@@ -62,9 +62,13 @@
 					width="60">
 					<h:outputText value="#{item.dataNascimento}" />
 				</p:column>
-				
+
 				<p:column headerText="Cadastro" styleClass="textContato" width="60">
 					<h:outputText value="#{item.dataCadastro}" />
+				</p:column>
+				
+				<p:column headerText="Observação" styleClass="textContato" width="60">
+					<h:outputText value="#{item.observacao}" />
 				</p:column>
 
 				<p:column headerText="Opções" width="60">
@@ -88,13 +92,14 @@
 				<f:facet name="footer">
 					<p:commandButton icon="ui-icon-plus" value="Novo"
 						actionListener="#{MBContato.prepararNovo}"
-						oncomplete="PF('dialogoContatoNovo').show();"
+						oncomplete="PF('dialogContatoNovo').show();"
 						update=":formContatoNovo:panelContatoNovo" />
 				</f:facet>
 			</p:dataTable>
 		</h:form>
 
-		<p:dialog widgetVar="dialogoContatoNovo" closable="false"
+		<!-- Tela novo contato -->
+		<p:dialog widgetVar="dialogContatoNovo" closable="false"
 			draggable="false" resizable="false" header="Contato - Novo"
 			modal="true" appendTo="@(body)">
 
@@ -104,14 +109,14 @@
 					<h:inputText maxlength="45" size="30"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
 						value="#{MBContato.contato.nome}" required="true"
-						requiredMessage="Nome do contato obrigatório!" />
+						requiredMessage="O Nome do contato obrigatório!" />
 
 					<h:outputLabel value="Endereco:" />
 					<h:inputText maxlength="45" size="30"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
 						value="#{MBContato.contato.endereco}" />
 
-					<h:outputLabel value="Telefone Fixo:" />
+					<h:outputLabel value="Telefone:" />
 					<p:inputMask id="telefoneFixo" mask="(99) 9999-9999" maxlength="14"
 						size="20" value="#{MBContato.contato.telefone}" />
 
@@ -138,12 +143,21 @@
 					<h:outputLabel value="Data Nascimento:" />
 					<p:inputMask maxlength="10" size="15" mask="99/99/9999"
 						value="#{MBContato.contato.dataNascimento}" />
+
+					<h:outputLabel value="Data Cadastro" />
+					<p:inputMask mask="99/99/9999" size="15" maxlength="10"
+						value="#{MBContato.contato.dataCadastro}" />
+
+					<h:outputLabel value="Observação" />
+					<p:inputText maxlength="100" size="30"
+						value="#{MBContato.contato.observacao}" />
+
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
 					<p:commandButton icon="ui-icon-disk" value="Gravar"
 						actionListener="#{MBContato.novo}"
-						oncomplete="PF('dialogoContatoNovo').hide(); tabContato.clearFilters(); PF('tabelaContato'.clearFilters();)"
+						oncomplete="verificaCampo(xhr, status, args, 'dialogContatoNovo', 'tabelaContatoListagem')"
 						update=":formContatoListagem:tabelaContato :mensagemGlobal" />
 
 					<p:commandButton icon="ui-icon-close" value="Cancelar"
@@ -262,5 +276,19 @@
 
 			</p:panelGrid>
 		</p:dialog>
+
+		<script>
+			function verificaCampo(xhr, status, args, dlg, tbl) {
+				if (args.validationFailed) {
+					PF(dlg).jq.effect("shake", {
+						times : 5
+					}, 100);
+				} else {
+					PF(dlg).hide();
+					PF(tbl).clearFilters();
+				}
+			}
+		</script>
+
 	</ui:define>
 </ui:composition>

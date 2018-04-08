@@ -59,10 +59,10 @@ public class ContatoBean {
 
 	public void novo() {
 		try {
-			ContatoDAO contatodao = new ContatoDAO();
-			contatodao.salvar(contato);
+			ContatoDAO dao = new ContatoDAO();
+			dao.salvar(contato);
 
-			itens = contatodao.listar();
+			itens = dao.listar();
 
 			JSFUtil.adicionarMensagemSucesso("Contato Salvo com sucesso!");
 		} catch (Exception e) {
