@@ -38,26 +38,5 @@
 			</p:panelGrid>
 		</p:dialog>
 
-		<p:dialog widgetVar="dialogoLogin" header="Usuário - Login"
-			resizable="false" draggable="false" closable="false">
-			<h:form id="formLogin">
-				<p:panelGrid columns="2" styleClass="panelEditar">
-
-					<h:outputLabel value="Login:" />
-					<h:inputText value="" required="true" />
-
-					<h:outputLabel value="Senha:" />
-					<h:inputText value="" required="true" />
-				</p:panelGrid>
-
-				<h:panelGrid columns="2">
-					<p:commandButton icon="ui-icon-locked" value="Entrar"
-						update=":mensagemGlobal" />
-
-					<p:commandButton icon="ui-icon-close" value="Cancelar"
-						onclick="PF('dialogoLogin').hide();" />
-				</h:panelGrid>
-			</h:form>
-		</p:dialog>
 	</ui:define>
 </ui:composition>
