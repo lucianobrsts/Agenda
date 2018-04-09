@@ -19,18 +19,18 @@
 				<p:panelGrid columns="2" styleClass="panelEditar">
 
 					<h:outputLabel value="Login:" />
-					<h:inputText value="#{autenticacaoBean.usuarioLogado.nome}"
+					<h:inputText value="#{MBAutenticar.usuarioLogado.nome}"
 						required="true" requiredMessage="O nome do usuário é obrigatório!" />
 
 					<h:outputLabel value="Senha:" />
-					<p:password value="#{autenticacaoBean.usuarioLogado.senha}"
+					<p:password value="#{MBAutenticar.usuarioLogado.senha}"
 						required="true"
 						requiredMessage="A senha do usuário é obrigatória!" />
 				</p:panelGrid>
 
 				<h:panelGrid columns="2">
 					<p:commandButton icon="ui-icon-locked" value="Entrar"
-						actionListener="#{autenticacaoBean.autenticar}"
+						actionListener="#{MBAutenticar.autenticar}"
 						update=":mensagemGlobal :formMenuPrincipal:menuBarPrincipal" />
 
 					<p:commandButton icon="ui-icon-close" value="Cancelar"

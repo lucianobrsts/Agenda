@@ -8,7 +8,7 @@ import br.com.agenda.dao.UsuarioDAO;
 import br.com.agenda.domain.Usuario;
 import br.com.agenda.util.JSFUtil;
 
-@ManagedBean
+@ManagedBean(name="MBAutenticar")
 public class AutenticacaoBean {
 
 	private Usuario usuarioLogado;
@@ -27,17 +27,16 @@ public class AutenticacaoBean {
 
 	public void autenticar() {
 		try {
-			UsuarioDAO userdao = new UsuarioDAO();
-			usuarioLogado = userdao.autenticar(usuarioLogado);
+			UsuarioDAO dao = new UsuarioDAO();
+			usuarioLogado = dao.autenticar(usuarioLogado);
 			if (usuarioLogado == null) {
 				JSFUtil.adicionarMensagemErro("Nome e/ou Senha inválidos!");
 			} else {
-				JSFUtil.adicionarMensagemSucesso("Funcionário autenticado com sucesso!");
+				JSFUtil.adicionarMensagemSucesso("Usuário autenticado com sucesso!");
 			}
 		} catch (RuntimeException ex) {
 			JSFUtil.adicionarMensagemErro("Erro ao tentar autenticar no sistema" + ex.getMessage());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

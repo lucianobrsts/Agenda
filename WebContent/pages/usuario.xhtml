@@ -11,6 +11,7 @@
 		<ui:include src="/include/menuPrincipal.xhtml" />
 	</ui:define>
 
+	<!-- Tabela Listagem de Usuários -->
 	<ui:define name="conteudo">
 		<h:form id="formUsuarioListagem">
 			<p:dataTable emptyMessage="Nenhum registro encontrado!"
@@ -62,6 +63,7 @@
 			</p:dataTable>
 		</h:form>
 
+		<!-- Dialogo Novo -->
 		<p:dialog widgetVar="dialogoUsuarioNovo" closable="false"
 			draggable="false" resizable="false" header="Usuario - Novo"
 			modal="true" appendTo="@(body)">
@@ -74,7 +76,7 @@
 						requiredMessage="Nome do usuário obrigatório!" />
 
 					<h:outputLabel value="Senha:" />
-					<h:inputText maxlength="8" size="8"
+					<h:inputSecret maxlength="8" size="8"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
 						value="#{MBUsuario.usuario.senha}" required="true"
 						requiredMessage="Senha do usuário obrigatório!" />
@@ -92,6 +94,7 @@
 			</h:form>
 		</p:dialog>
 
+		<!-- Dialogo Excluir -->
 		<p:dialog widgetVar="dialogoUsuarioExcluir" closable="false"
 			draggable="false" resizable="false" modal="true"
 			header="Usuário - Excluir" appendTo="@(body)">
@@ -118,6 +121,7 @@
 			</h:form>
 		</p:dialog>
 
+		<!-- Dialogo Editar -->
 		<p:dialog widgetVar="dialogoUsuarioEditar" closable="false"
 			draggable="false" resizable="false" modal="true"
 			header="Usuário - Editar" appendTo="@(body)">
@@ -149,30 +153,5 @@
 			</h:form>
 		</p:dialog>
 
-		<p:dialog header="Agenda Java 1.0" widgetVar="dialogoSobre"
-			modal="true" height="350" width="600" appendTo="@(body)"
-			draggable="false" resizable="false">
-
-			<p:panelGrid columns="2" styleClass="panelEditar">
-				<h:graphicImage value="/images/agenda.png" width="200" height="200"
-					id="image" />
-
-				<h3>Sobre a Agenda Java</h3>
-
-				<h5>Versão 1.0</h5>
-
-				<p>Lorem Ipsum is simply dummy text of the printing and
-					typesetting industry. Lorem Ipsum has been the industry's standard
-					dummy text ever since the 1500s.</p>
-			</p:panelGrid>
-
-			<p:panelGrid columns="3" styleClass="panelEditarSobre">
-
-				<h:outputText value="Todos os direitos reservados" />
-				<h:outputText value="Direitos do Usuário Final" />
-				<h:outputText value="Política de Privacidade do Usuário" />
-
-			</p:panelGrid>
-		</p:dialog>
 	</ui:define>
 </ui:composition>
