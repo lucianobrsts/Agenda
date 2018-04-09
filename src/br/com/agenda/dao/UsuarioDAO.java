@@ -28,7 +28,7 @@ public class UsuarioDAO {
 
 	public void excluir(Usuario user) throws SQLException {
 		StringBuilder sql = new StringBuilder();
-		sql.append("DELETE FROM agenda.login ");
+		sql.append("DELETE FROM agenda.usuario ");
 		sql.append("WHERE idusuario = ? ");
 
 		Connection conexao = ConexaoFactory.conectar();
@@ -134,30 +134,26 @@ public class UsuarioDAO {
 		return lista;
 	}
 
-	public Usuario autenticar(Usuario user) throws SQLException {
-
-		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT nome, senha ");
-		sql.append("FROM  agenda.usuario ");
-		sql.append("WHERE nome = ? AND senha = ? ");
+	public Usuario autenticar(String nome, String senha) throws SQLException {
+		Usuario usuario = null;
+		String sql = "SELECT * FROM usuario WHERE nome = ? AND senha = ? ";
 
 		Connection conexao = ConexaoFactory.conectar();
 
-		PreparedStatement comando = conexao.prepareStatement(sql.toString());
-		comando.setString(1, user.getNome());
-		comando.setString(2, user.getSenha());
+		PreparedStatement comando = conexao.prepareStatement(sql);
+
+		comando.setObject(1, nome);
+		comando.setObject(2, senha);
 
 		ResultSet resultado = comando.executeQuery();
 
-		Usuario retorno = null;
-
 		if (resultado.next()) {
-			retorno = new Usuario();
-			retorno.setNome(resultado.getString("nome"));
-			retorno.setSenha(resultado.getString("senha"));
+			usuario = new Usuario();
+			usuario.setNome(resultado.getString("nome"));
+			usuario.setSenha(resultado.getString("senha"));
 		}
 
-		return retorno;
+		return usuario;
 	}
 
 }

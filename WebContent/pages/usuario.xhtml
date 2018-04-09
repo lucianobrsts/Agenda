@@ -15,8 +15,8 @@
 	<ui:define name="conteudo">
 		<h:form id="formUsuarioListagem">
 			<p:dataTable emptyMessage="Nenhum registro encontrado!"
-				widgetVar="tabUsuario" value="#{MBUsuario.itens}" var="item"
-				filteredValue="#{MBUsuario.itensFiltrados}" rows="10"
+				widgetVar="tabelaUsuarioListagem" value="#{MBUsuario.itens}"
+				var="item" filteredValue="#{MBUsuario.itensFiltrados}" rows="10"
 				paginator="true" id="tabelaUsuario">
 
 				<f:facet name="header">
@@ -38,7 +38,7 @@
 
 				<p:column headerText="Opções" style="text-align:center">
 					<p:commandButton icon="ui-icon-trash"
-						oncomplete="PF('dialogoUsuarioExcluir').show();"
+						oncomplete="PF('dialogUsuarioExcluir').show();"
 						update=":formUsuarioExcluir:panelUsuarioExcluir">
 
 						<f:setPropertyActionListener value="#{item}"
@@ -46,7 +46,7 @@
 					</p:commandButton>
 
 					<p:commandButton icon="ui-icon-pencil"
-						oncomplete="PF('dialogoUsuarioEditar').show();"
+						oncomplete="PF('dialogUsuarioEditar').show();"
 						update=":formUsuarioEditar:panelUsuarioEditar">
 
 						<f:setPropertyActionListener value="#{item}"
@@ -57,14 +57,14 @@
 				<f:facet name="footer">
 					<p:commandButton icon="ui-icon-plus" value="Novo"
 						actionListener="#{MBUsuario.prepararNovo}"
-						oncomplete="PF('dialogoUsuarioNovo').show();"
+						oncomplete="PF('dialogUsuarioNovo').show();"
 						update=":formUsuarioNovo:panelUsuarioNovo" />
 				</f:facet>
 			</p:dataTable>
 		</h:form>
 
 		<!-- Dialogo Novo -->
-		<p:dialog widgetVar="dialogoUsuarioNovo" closable="false"
+		<p:dialog widgetVar="dialogUsuarioNovo" closable="false"
 			draggable="false" resizable="false" header="Usuario - Novo"
 			modal="true" appendTo="@(body)">
 			<h:form id="formUsuarioNovo">
@@ -85,7 +85,7 @@
 				<h:panelGrid columns="2">
 					<p:commandButton icon="ui-icon-disk" value="Gravar"
 						actionListener="#{MBUsuario.novo}"
-						oncomplete="PF('dialogoUsuarioNovo').hide(); tabUsuario.clearFilters(); PF('tabelaUsuario'.clearFilters();)"
+						oncomplete="verificaCampo(xhr, status, args, 'dialogUsuarioNovo', 'tabelaUsuarioListagem')"
 						update=":formUsuarioListagem:tabelaUsuario :mensagemGlobal" />
 
 					<p:commandButton icon="ui-icon-close" value="Cancelar"
@@ -95,39 +95,39 @@
 		</p:dialog>
 
 		<!-- Dialogo Excluir -->
-		<p:dialog widgetVar="dialogoUsuarioExcluir" closable="false"
+		<p:dialog widgetVar="dialogUsuarioExcluir" closable="false"
 			draggable="false" resizable="false" modal="true"
 			header="Usuário - Excluir" appendTo="@(body)">
 
 			<h:form id="formUsuarioExcluir">
-				<p:panelGrid columns="2" id="panelUsuarioExcluir"
+				<h:panelGrid columns="2" id="panelUsuarioExcluir"
 					styleClass="panelEditar">
 					<h:outputLabel value="Código:" />
 					<h:outputText value="#{MBUsuario.usuario.idUsuario}" />
 
 					<h:outputLabel value="Nome:" />
 					<h:outputText value="#{MBUsuario.usuario.nome}" />
-				</p:panelGrid>
+				</h:panelGrid>
 
-				<p:panelGrid columns="2" styleClass="panelEditar">
+				<h:panelGrid columns="2" styleClass="panelEditar">
 					<p:commandButton icon="ui-icon-trash" value="Excluir"
 						actionListener="#{MBUsuario.excluir}"
-						oncomplete="PF('dialogoUsuarioExcluir').hide(); tabUsuario.clearFilters(); PF('tabelaUsuario'.clearFilters();"
+						oncomplete="verificaCampo(xhr, status, args, 'dialogUsuarioExcluir', 'tabelaUsuarioListagem')"
 						update=":formUsuarioListagem:tabelaUsuario :mensagemGlobal" />
 
 					<p:commandButton icon="ui-icon-close" value="Cancelar"
 						onclick="PF('dialogoUsuarioExcluir').hide();" />
-				</p:panelGrid>
+				</h:panelGrid>
 			</h:form>
 		</p:dialog>
 
 		<!-- Dialogo Editar -->
-		<p:dialog widgetVar="dialogoUsuarioEditar" closable="false"
+		<p:dialog widgetVar="dialogUsuarioEditar" closable="false"
 			draggable="false" resizable="false" modal="true"
 			header="Usuário - Editar" appendTo="@(body)">
 
 			<h:form id="formUsuarioEditar">
-				<p:panelGrid columns="2" id="panelUsuarioEditar"
+				<h:panelGrid columns="2" id="panelUsuarioEditar"
 					styleClass="panelEditar">
 					<h:outputLabel value="Código:" />
 					<h:outputText value="#{MBUsuario.usuario.idUsuario}" />
@@ -139,19 +139,32 @@
 					<h:outputLabel value="Senha:" />
 					<h:inputText value="#{MBUsuario.usuario.senha}"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all" />
-				</p:panelGrid>
+				</h:panelGrid>
 
-				<p:panelGrid>
+				<h:panelGrid columns="2">
 					<p:commandButton icon="ui-icon-pencil" value="Editar"
 						actionListener="#{MBUsuario.editar}"
-						oncomplete="PF('dialogoUsuarioEditar').hide(); tabUsuario.clearFilters(); PF('tabelaUsuario'.clearFilters();"
+						oncomplete="verificaCampo(xhr, status, args, 'dialogUsuarioEditar', 'tabelaUsuarioListagem')"
 						update=":formUsuarioListagem:tabelaUsuario :mensagemGlobal" />
 
 					<p:commandButton icon="ui-icon-close" value="Cancelar"
 						onclick="PF('dialogoUsuarioEditar').hide();" />
-				</p:panelGrid>
+				</h:panelGrid>
 			</h:form>
 		</p:dialog>
+
+		<script>
+			function verificaCampo(xhr, status, args, dlg, tbl) {
+				if (args.validationFailed) {
+					PF(dlg).jq.effect("shake", {
+						times : 5
+					}, 100);
+				} else {
+					PF(dlg).hide();
+					PF(tbl).clearFilters();
+				}
+			}
+		</script>
 
 	</ui:define>
 </ui:composition>

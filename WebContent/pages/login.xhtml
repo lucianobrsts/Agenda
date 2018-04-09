@@ -7,16 +7,11 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/templates/modeloSistema.xhtml">
 
-	<ui:define name="menu">
-		<ui:include src="/include/menuPrincipal.xhtml" />
-	</ui:define>
-
-
 	<ui:define name="conteudo">
 		<p:dialog widgetVar="dialogoLogin" header="Usuário - Login"
 			resizable="false" draggable="false" visible="true" closable="false">
-			<h:form id="formLogin">
-				<p:panelGrid columns="2" styleClass="panelEditar">
+			<h:form id="formLoginUsuario">
+				<p:panelGrid columns="2" styleClass="panelEditar" id="panelLoginUsuario">
 
 					<h:outputLabel value="Login:" />
 					<h:inputText value="#{MBAutenticar.usuarioLogado.nome}"
@@ -31,10 +26,8 @@
 				<h:panelGrid columns="2">
 					<p:commandButton icon="ui-icon-locked" value="Entrar"
 						actionListener="#{MBAutenticar.autenticar}"
-						update=":mensagemGlobal :formMenuPrincipal:menuBarPrincipal" />
+						update=":mensagemGlobal :formLoginUsuario:panelLoginUsuario" />
 
-					<p:commandButton icon="ui-icon-close" value="Cancelar"
-						onclick="PF('dialogoLogin').hide();" />
 				</h:panelGrid>
 			</h:form>
 		</p:dialog>

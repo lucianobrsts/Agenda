@@ -46,7 +46,6 @@ public class UsuarioDAOTeste {
 	}
 
 	@Test
-	@Ignore
 	public void autenticar() throws SQLException {
 
 		Usuario u = new Usuario();
@@ -54,11 +53,11 @@ public class UsuarioDAOTeste {
 		u.setSenha("1234");
 
 		UsuarioDAO userdao = new UsuarioDAO();
-		Usuario u2 = userdao.autenticar(u);
+		Usuario u2 = userdao.autenticar("lucianobrsts", "123");
 
 		// System.out.println("Autenticado: " + u2);
 
-		Assert.assertNotNull(u2);
+		Assert.assertEquals(u, u2);
 	}
 
 }

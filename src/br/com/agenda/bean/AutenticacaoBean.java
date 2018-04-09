@@ -1,23 +1,34 @@
 package br.com.agenda.bean;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
+import org.omnifaces.util.Faces;
+import org.omnifaces.util.Messages;
 
 import br.com.agenda.dao.UsuarioDAO;
 import br.com.agenda.domain.Usuario;
-import br.com.agenda.util.JSFUtil;
 
-@ManagedBean(name="MBAutenticar")
+@ManagedBean(name = "MBAutenticar")
+@SessionScoped
 public class AutenticacaoBean {
 
+	private Usuario usuario;
 	private Usuario usuarioLogado;
 
-	public Usuario getUsuarioLogado() {
-		if (usuarioLogado == null) {
-			usuarioLogado = new Usuario();
-		}
+	public Usuario getUsuario() {
+		return usuario;
+	}
 
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Usuario getUsuarioLogado() {
 		return usuarioLogado;
 	}
 
@@ -25,19 +36,30 @@ public class AutenticacaoBean {
 		this.usuarioLogado = usuarioLogado;
 	}
 
+	@PostConstruct
+	public void iniciar() {
+		usuario = new Usuario();
+	}
+
 	public void autenticar() {
+
 		try {
 			UsuarioDAO dao = new UsuarioDAO();
-			usuarioLogado = dao.autenticar(usuarioLogado);
+
+			usuarioLogado = dao.autenticar(usuario.getNome(), usuario.getSenha());
+
 			if (usuarioLogado == null) {
-				JSFUtil.adicionarMensagemErro("Nome e/ou Senha inválidos!");
-			} else {
-				JSFUtil.adicionarMensagemSucesso("Usuário autenticado com sucesso!");
+				Messages.addGlobalError("Usuário, senha ou tipo incorretos!");
+				return;
 			}
-		} catch (RuntimeException ex) {
-			JSFUtil.adicionarMensagemErro("Erro ao tentar autenticar no sistema" + ex.getMessage());
+
+			Faces.redirect("/pages/principal.xhtml");
+		} catch (IOException e) {
+			e.printStackTrace();
+			Messages.addGlobalError(e.getMessage());
 		} catch (SQLException e) {
 			e.printStackTrace();
+			Messages.addGlobalError(e.getMessage());
 		}
 	}
 
