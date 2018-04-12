@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
@@ -63,9 +64,8 @@ public class AutenticacaoBean {
 		}
 	}
 
-	public String sair() {
-		usuarioLogado = null;
-
-		return "/pages/login.xhtml?faces-redirect=true";
+	public void sair() {
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("MBAutenticar");
 	}
+
 }

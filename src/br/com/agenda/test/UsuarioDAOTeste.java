@@ -48,16 +48,17 @@ public class UsuarioDAOTeste {
 	@Test
 	public void autenticar() throws SQLException {
 
-		Usuario u = new Usuario();
-		u.setNome("lucianobrsts");
-		u.setSenha("1234");
+		UsuarioDAO dao = new UsuarioDAO();
+		Usuario user = new Usuario();
 
-		UsuarioDAO userdao = new UsuarioDAO();
-		Usuario u2 = userdao.autenticar("lucianobrsts", "123");
+		String nome = "Luciano Brito";
+		String senha = "123456";
 
-		// System.out.println("Autenticado: " + u2);
+		user = dao.autenticar(nome, senha);
 
-		Assert.assertEquals(u, u2);
+		System.out.println("Usuário: " + user);
+
+		Assert.assertNotNull(user);
 	}
 
 }

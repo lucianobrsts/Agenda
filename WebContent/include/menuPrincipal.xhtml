@@ -22,9 +22,17 @@
 
 			<p:menuitem icon="ui-icon-locked" value="Login"
 				outcome="/pages/login.xhtml" />
-
+				
 			<f:facet name="options">
-				<p:commandButton type="button" value="Logout" icon="ui-icon-unlocked" />
+				<p:outputLabel value="Olá: " />
+				<h:outputText value="#{MBAutenticar.usuarioLogado.nome}"
+					style="margin-right:20px;" />
+
+				<p:commandLink action="/pages/login.xhtml">
+					<p:commandButton type="button" value="Logout"
+						icon="ui-icon-circle-close" actionListener="#{MBAutenticar.sair}"
+						ajax="false" style="margin-right:20px;" />
+				</p:commandLink>
 			</f:facet>
 		</p:menubar>
 	</h:form>
