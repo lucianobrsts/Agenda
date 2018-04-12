@@ -11,15 +11,15 @@
 		<p:dialog widgetVar="dialogoLogin" header="Usuário - Login"
 			resizable="false" draggable="false" visible="true" closable="false">
 			<h:form id="formLoginUsuario">
-				<p:panelGrid columns="2" styleClass="panelEditar" id="panelLoginUsuario">
+				<p:panelGrid columns="2" styleClass="panelEditar"
+					id="panelLoginUsuario">
 
 					<h:outputLabel value="Login:" />
-					<h:inputText value="#{MBAutenticar.usuarioLogado.nome}"
-						required="true" requiredMessage="O nome do usuário é obrigatório!" />
+					<h:inputText value="#{MBAutenticar.usuario.nome}" required="true"
+						requiredMessage="O nome do usuário é obrigatório!" />
 
 					<h:outputLabel value="Senha:" />
-					<p:password value="#{MBAutenticar.usuarioLogado.senha}"
-						required="true"
+					<p:password value="#{MBAutenticar.usuario.senha}" required="true"
 						requiredMessage="A senha do usuário é obrigatória!" />
 				</p:panelGrid>
 

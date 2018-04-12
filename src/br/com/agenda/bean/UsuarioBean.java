@@ -61,8 +61,10 @@ public class UsuarioBean {
 		try {
 			UsuarioDAO userdao = new UsuarioDAO();
 			userdao.salvar(usuario);
-			JSFUtil.adicionarMensagemSucesso("Usuário salvo com sucesso!");
+
 			itens = userdao.listar();
+
+			JSFUtil.adicionarMensagemSucesso("Usuário salvo com sucesso!");
 		} catch (Exception e) {
 			e.printStackTrace();
 			JSFUtil.adicionarMensagemErro(e.getMessage());

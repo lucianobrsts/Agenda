@@ -21,14 +21,6 @@ public class AutenticacaoBean {
 	private Usuario usuario;
 	private Usuario usuarioLogado;
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
 	public Usuario getUsuarioLogado() {
 		return usuarioLogado;
 	}
@@ -37,13 +29,20 @@ public class AutenticacaoBean {
 		this.usuarioLogado = usuarioLogado;
 	}
 
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	@PostConstruct
 	public void iniciar() {
 		usuario = new Usuario();
 	}
 
 	public void autenticar() {
-
 		try {
 			UsuarioDAO dao = new UsuarioDAO();
 
@@ -54,7 +53,7 @@ public class AutenticacaoBean {
 				return;
 			}
 
-			Faces.redirect("/pages/principal.xhtml");
+			Faces.redirect("faces/pages/principal.xhtml");
 		} catch (IOException e) {
 			e.printStackTrace();
 			Messages.addGlobalError(e.getMessage());
