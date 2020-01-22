@@ -38,7 +38,7 @@ public class ContatoDAO {
 	public void excluir(Contato c) throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append("DELETE FROM agenda.contato ");
-		sql.append("WHERE idcontato = ?");
+		sql.append("WHERE codigo = ?");
 
 		Connection conexao = ConexaoFactory.conectar();
 
@@ -54,7 +54,7 @@ public class ContatoDAO {
 		sql.append("UPDATE agenda.contato ");
 		sql.append(
 				"SET nome = ?, endereco = ?, telefone = ?, celular = ?, profissao = ?, email = ?, empresa = ?, dataNascimento = ?, dataCadastro = ?, observacao = ? ");
-		sql.append("WHERE idcontato = ?");
+		sql.append("WHERE codigo = ?");
 
 		Connection conexao = ConexaoFactory.conectar();
 
