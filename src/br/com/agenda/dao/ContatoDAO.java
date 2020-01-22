@@ -76,9 +76,9 @@ public class ContatoDAO {
 
 	public Contato buscarPorCodigo(Contato c) throws SQLException {
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT idContato, nome, celular ");
+		sql.append("SELECT codigo, nome, celular ");
 		sql.append("FROM  agenda.contato ");
-		sql.append("WHERE idcontato = ? ");
+		sql.append("WHERE codigo = ? ");
 
 		Connection conexao = ConexaoFactory.conectar();
 
@@ -91,7 +91,7 @@ public class ContatoDAO {
 
 		if (resultado.next()) {
 			retorno = new Contato();
-			retorno.setCodigo(resultado.getLong("idcontato"));
+			retorno.setCodigo(resultado.getLong("codigo"));
 			retorno.setNome(resultado.getString("nome"));
 			retorno.setCelular(resultado.getString("celular"));
 		}
@@ -101,7 +101,7 @@ public class ContatoDAO {
 	public ArrayList<Contato> listar() throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append(
-				"SELECT idcontato, nome, endereco, telefone, celular, profissao, email, empresa, dataNascimento, datacadastro, observacao ");
+				"SELECT codigo, nome, endereco, telefone, celular, profissao, email, empresa, dataNascimento, datacadastro, observacao ");
 		sql.append("FROM agenda.contato ");
 		sql.append("ORDER BY nome ASC ");
 
@@ -115,7 +115,7 @@ public class ContatoDAO {
 
 		while (resultado.next()) {
 			Contato c = new Contato();
-			c.setCodigo(resultado.getLong("idcontato"));
+			c.setCodigo(resultado.getLong("codigo"));
 			c.setNome(resultado.getString("nome"));
 			c.setEndereco(resultado.getString("endereco"));
 			c.setTelefone(resultado.getString("telefone"));
@@ -135,7 +135,7 @@ public class ContatoDAO {
 	public ArrayList<Contato> buscarPorNome(Contato c) throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append(
-				"SELECT idcontato, nome, endereco, telefone, celular, profissao, email, empresa, dataNascimento, dataCadastro, observacao ");
+				"SELECT codigo, nome, endereco, telefone, celular, profissao, email, empresa, dataNascimento, dataCadastro, observacao ");
 		sql.append("FROM agenda.contato ");
 		sql.append("WHERE nome LIKE ?");
 		sql.append("ORDER BY nome ASC ");
@@ -151,7 +151,7 @@ public class ContatoDAO {
 
 		while (resultado.next()) {
 			Contato item = new Contato();
-			item.setCodigo(resultado.getLong("idcontato"));
+			item.setCodigo(resultado.getLong("codigo"));
 			item.setNome(resultado.getString("nome"));
 			item.setEndereco(resultado.getString("endereco"));
 			item.setTelefone(resultado.getString("telefone"));

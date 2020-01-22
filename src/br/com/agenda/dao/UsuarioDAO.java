@@ -29,7 +29,7 @@ public class UsuarioDAO {
 	public void excluir(Usuario user) throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append("DELETE FROM agenda.usuario ");
-		sql.append("WHERE idusuario = ? ");
+		sql.append("WHERE codigo = ? ");
 
 		Connection conexao = ConexaoFactory.conectar();
 
@@ -44,7 +44,7 @@ public class UsuarioDAO {
 		StringBuilder sql = new StringBuilder();
 		sql.append("UPDATE agenda.usuario ");
 		sql.append("SET nome = ?, senha = ? ");
-		sql.append("WHERE idusuario  = ? ");
+		sql.append("WHERE codigo  = ? ");
 
 		Connection conexao = ConexaoFactory.conectar();
 
@@ -58,9 +58,9 @@ public class UsuarioDAO {
 
 	public Usuario buscarPorCodigo(Usuario user) throws SQLException {
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT idusuario, nome, senha ");
+		sql.append("SELECT codigo, nome, senha ");
 		sql.append("FROM  agenda.usuario ");
-		sql.append("WHERE idusuario = ? ");
+		sql.append("WHERE codigo = ? ");
 
 		Connection conexao = ConexaoFactory.conectar();
 
@@ -73,7 +73,7 @@ public class UsuarioDAO {
 
 		if (resultado.next()) {
 			retorno = new Usuario();
-			retorno.setCodigo(resultado.getLong("idusuario"));
+			retorno.setCodigo(resultado.getLong("codigo"));
 			retorno.setNome(resultado.getString("nome"));
 			retorno.setSenha(resultado.getString("senha"));
 		}
@@ -82,7 +82,7 @@ public class UsuarioDAO {
 
 	public ArrayList<Usuario> listar() throws SQLException {
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT idusuario, nome, senha ");
+		sql.append("SELECT codigo, nome, senha ");
 		sql.append("FROM agenda.usuario ");
 		sql.append("ORDER BY nome ASC ");
 
@@ -96,7 +96,7 @@ public class UsuarioDAO {
 
 		while (resultado.next()) {
 			Usuario u = new Usuario();
-			u.setCodigo(resultado.getLong("idusuario"));
+			u.setCodigo(resultado.getLong("codigo"));
 			u.setNome(resultado.getString("nome"));
 			u.setSenha(resultado.getString("senha"));
 
@@ -109,7 +109,7 @@ public class UsuarioDAO {
 	public ArrayList<Usuario> buscarPorNome(Usuario user) throws SQLException {
 
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT idusuario, nome, senha ");
+		sql.append("SELECT codigo, nome, senha ");
 		sql.append("FROM agenda.usuario ");
 		sql.append("WHERE nome LIKE ?");
 		sql.append("ORDER BY nome ASC ");
@@ -125,7 +125,7 @@ public class UsuarioDAO {
 
 		while (resultado.next()) {
 			Usuario item = new Usuario();
-			item.setCodigo(resultado.getLong("idusuario"));
+			item.setCodigo(resultado.getLong("codigo"));
 			item.setNome(resultado.getString("nome"));
 			item.setSenha(resultado.getString("senha"));
 
