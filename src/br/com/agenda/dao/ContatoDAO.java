@@ -43,7 +43,7 @@ public class ContatoDAO {
 		Connection conexao = ConexaoFactory.conectar();
 
 		PreparedStatement comando = conexao.prepareStatement(sql.toString());
-		comando.setLong(1, c.getIdContato());
+		comando.setLong(1, c.getCodigo());
 
 		comando.executeUpdate();
 
@@ -69,7 +69,7 @@ public class ContatoDAO {
 		comando.setString(8, c.getDataNascimento());
 		comando.setString(9, c.getDataCadastro());
 		comando.setString(10, c.getObservacao());
-		comando.setLong(11, c.getIdContato());
+		comando.setLong(11, c.getCodigo());
 
 		comando.executeUpdate();
 	}
@@ -83,7 +83,7 @@ public class ContatoDAO {
 		Connection conexao = ConexaoFactory.conectar();
 
 		PreparedStatement comando = conexao.prepareStatement(sql.toString());
-		comando.setLong(1, c.getIdContato());
+		comando.setLong(1, c.getCodigo());
 
 		ResultSet resultado = comando.executeQuery();
 
@@ -91,7 +91,7 @@ public class ContatoDAO {
 
 		if (resultado.next()) {
 			retorno = new Contato();
-			retorno.setIdContato(resultado.getLong("idcontato"));
+			retorno.setCodigo(resultado.getLong("idcontato"));
 			retorno.setNome(resultado.getString("nome"));
 			retorno.setCelular(resultado.getString("celular"));
 		}
@@ -115,7 +115,7 @@ public class ContatoDAO {
 
 		while (resultado.next()) {
 			Contato c = new Contato();
-			c.setIdContato(resultado.getLong("idcontato"));
+			c.setCodigo(resultado.getLong("idcontato"));
 			c.setNome(resultado.getString("nome"));
 			c.setEndereco(resultado.getString("endereco"));
 			c.setTelefone(resultado.getString("telefone"));
@@ -151,7 +151,7 @@ public class ContatoDAO {
 
 		while (resultado.next()) {
 			Contato item = new Contato();
-			item.setIdContato(resultado.getLong("idcontato"));
+			item.setCodigo(resultado.getLong("idcontato"));
 			item.setNome(resultado.getString("nome"));
 			item.setEndereco(resultado.getString("endereco"));
 			item.setTelefone(resultado.getString("telefone"));

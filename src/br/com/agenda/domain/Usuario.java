@@ -2,16 +2,46 @@ package br.com.agenda.domain;
 
 public class Usuario {
 
-	private Long idUsuario;
+	private Long codigo;
 	private String nome;
 	private String senha;
 
-	public Long getIdUsuario() {
-		return idUsuario;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		return result;
 	}
 
-	public void setIdUsuario(Long codigo) {
-		this.idUsuario = codigo;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario [codigo=" + codigo + ", nome=" + nome + ", senha=" + senha + "]";
+	}
+
+	public Long getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
 	}
 
 	public String getNome() {
@@ -29,10 +59,5 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
-	@Override
-	public String toString() {
-		return "Código" + idUsuario + "\nNome: " + nome + "\nSenha: " + senha ;
-	}
-	
+
 }

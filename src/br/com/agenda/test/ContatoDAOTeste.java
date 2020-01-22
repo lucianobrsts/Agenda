@@ -33,7 +33,7 @@ public class ContatoDAOTeste {
 	@Ignore
 	public void excluir() throws SQLException {
 		Contato c = new Contato();
-		c.setIdContato(2L);
+		c.setCodigo(2L);
 
 		ContatoDAO contatodao = new ContatoDAO();
 		contatodao.excluir(c);
@@ -42,7 +42,7 @@ public class ContatoDAOTeste {
 	@Test
 	public void editar() throws SQLException {
 		Contato c = new Contato();
-		c.setIdContato(1L);
+		c.setCodigo(1L);
 		c.setNome("Luciana Brito");
 		c.setEndereco("Rua Goiás, 670");
 		c.setTelefone("85 3482-3844");

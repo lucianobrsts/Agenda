@@ -34,7 +34,7 @@ public class UsuarioDAO {
 		Connection conexao = ConexaoFactory.conectar();
 
 		PreparedStatement comando = conexao.prepareStatement(sql.toString());
-		comando.setLong(1, user.getIdUsuario());
+		comando.setLong(1, user.getCodigo());
 
 		comando.executeUpdate();
 
@@ -51,7 +51,7 @@ public class UsuarioDAO {
 		PreparedStatement comando = conexao.prepareStatement(sql.toString());
 		comando.setString(1, user.getNome());
 		comando.setString(2, user.getSenha());
-		comando.setLong(3, user.getIdUsuario());
+		comando.setLong(3, user.getCodigo());
 
 		comando.executeUpdate();
 	}
@@ -65,7 +65,7 @@ public class UsuarioDAO {
 		Connection conexao = ConexaoFactory.conectar();
 
 		PreparedStatement comando = conexao.prepareStatement(sql.toString());
-		comando.setLong(1, user.getIdUsuario());
+		comando.setLong(1, user.getCodigo());
 
 		ResultSet resultado = comando.executeQuery();
 
@@ -73,7 +73,7 @@ public class UsuarioDAO {
 
 		if (resultado.next()) {
 			retorno = new Usuario();
-			retorno.setIdUsuario(resultado.getLong("idusuario"));
+			retorno.setCodigo(resultado.getLong("idusuario"));
 			retorno.setNome(resultado.getString("nome"));
 			retorno.setSenha(resultado.getString("senha"));
 		}
@@ -96,7 +96,7 @@ public class UsuarioDAO {
 
 		while (resultado.next()) {
 			Usuario u = new Usuario();
-			u.setIdUsuario(resultado.getLong("idusuario"));
+			u.setCodigo(resultado.getLong("idusuario"));
 			u.setNome(resultado.getString("nome"));
 			u.setSenha(resultado.getString("senha"));
 
@@ -125,7 +125,7 @@ public class UsuarioDAO {
 
 		while (resultado.next()) {
 			Usuario item = new Usuario();
-			item.setIdUsuario(resultado.getLong("idusuario"));
+			item.setCodigo(resultado.getLong("idusuario"));
 			item.setNome(resultado.getString("nome"));
 			item.setSenha(resultado.getString("senha"));
 

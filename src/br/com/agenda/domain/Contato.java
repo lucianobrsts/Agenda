@@ -2,7 +2,7 @@ package br.com.agenda.domain;
 
 public class Contato {
 
-	private Long idContato;
+	private Long codigo;
 	private String nome;
 	private String endereco;
 	private String telefone;
@@ -14,20 +14,45 @@ public class Contato {
 	private String dataCadastro;
 	private String observacao;
 
-	public String getObservacao() {
-		return observacao;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		return result;
 	}
 
-	public void setObservacao(String observacao) {
-		this.observacao = observacao;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Contato other = (Contato) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		return true;
 	}
 
-	public Long getIdContato() {
-		return idContato;
+	@Override
+	public String toString() {
+		return "Contato [codigo=" + codigo + ", nome=" + nome + ", endereco=" + endereco + ", telefone=" + telefone
+				+ ", celular=" + celular + ", profissao=" + profissao + ", email=" + email + ", empresa=" + empresa
+				+ ", dataNascimento=" + dataNascimento + ", dataCadastro=" + dataCadastro + ", observacao=" + observacao
+				+ "]";
 	}
 
-	public void setIdContato(Long idContato) {
-		this.idContato = idContato;
+	public Long getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
 	}
 
 	public String getNome() {
@@ -102,9 +127,12 @@ public class Contato {
 		this.dataCadastro = dataCadastro;
 	}
 
-	@Override
-	public String toString() {
-		String impressao = "\nCódigo: " + idContato + "\nNome: " + nome + "\nCelular: " + celular;
-		return impressao;
+	public String getObservacao() {
+		return observacao;
 	}
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
+
 }
