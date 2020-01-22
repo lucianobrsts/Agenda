@@ -24,7 +24,7 @@
 				</f:facet>
 
 				<p:column headerText="Código" styleClass="text">
-					<h:outputText value="#{item.idUsuario}" />
+					<h:outputText value="#{item.codigo}" />
 				</p:column>
 
 				<p:column headerText="Nome" sortBy="#{item.nome}"
@@ -103,7 +103,7 @@
 				<h:panelGrid columns="2" id="panelUsuarioExcluir"
 					styleClass="panelEditar">
 					<h:outputLabel value="Código:" />
-					<h:outputText value="#{MBUsuario.usuario.idUsuario}" />
+					<h:outputText value="#{MBUsuario.usuario.codigo}" />
 
 					<h:outputLabel value="Nome:" />
 					<h:outputText value="#{MBUsuario.usuario.nome}" />
@@ -130,7 +130,7 @@
 				<h:panelGrid columns="2" id="panelUsuarioEditar"
 					styleClass="panelEditar">
 					<h:outputLabel value="Código:" />
-					<h:outputText value="#{MBUsuario.usuario.idUsuario}" />
+					<h:outputText value="#{MBUsuario.usuario.codigo}" />
 
 					<h:outputLabel value="Nome:" />
 					<h:inputText value="#{MBUsuario.usuario.nome}"
