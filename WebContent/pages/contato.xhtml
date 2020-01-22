@@ -12,7 +12,7 @@
 	</ui:define>
 
 	<ui:define name="conteudo">
-		<!-- Listagem de Contatos - Table -->
+		<!-- Listagem de Contatos - DataTable -->
 		<h:form id="formContatoListagem">
 			<p:dataTable emptyMessage="Nenhum registro encontrado!"
 				widgetVar="tabelaContatoListagem" value="#{MBContato.itens}"
@@ -37,42 +37,19 @@
 					<h:outputText value="#{item.endereco}" />
 				</p:column>
 
-				<p:column headerText="Fone Fixo" width="100">
+				<p:column headerText="Fone Fixo" width="150">
 					<h:outputText value="#{item.telefone}" />
 				</p:column>
 
-				<p:column headerText="Celular" width="100">
+				<p:column headerText="Celular" width="150">
 					<h:outputText value="#{item.celular}" />
 				</p:column>
 
-				<p:column headerText="E-mail" width="180">
+				<p:column headerText="E-mail" width="200">
 					<h:outputText value="#{item.email}" />
 				</p:column>
 
-				<p:column headerText="Profissão" sortBy="#{item.profissao}"
-					filterBy="#{item.profissao}" width="100" styleClass="textContato">
-					<h:outputText value="#{item.profissao}" />
-				</p:column>
-
-				<p:column headerText="Empresa" width="100">
-					<h:outputText value="#{item.empresa}" />
-				</p:column>
-
-				<p:column headerText="Aniversário" styleClass="textContato"
-					width="100">
-					<h:outputText value="#{item.dataNascimento}" />
-				</p:column>
-
-				<p:column headerText="Cadastro" styleClass="textContato" width="60">
-					<h:outputText value="#{item.dataCadastro}" />
-				</p:column>
-
-				<p:column headerText="Observação" styleClass="textContato"
-					width="60">
-					<h:outputText value="#{item.observacao}" />
-				</p:column>
-
-				<p:column headerText="Opções" width="70">
+				<p:column headerText="Opções" width="100">
 					<p:commandButton icon="ui-icon-trash"
 						oncomplete="PF('dialogContatoExcluir').show();"
 						update=":formContatoExcluir:panelContatoExcluir">
@@ -87,6 +64,14 @@
 
 						<f:setPropertyActionListener value="#{item}"
 							target="#{MBContato.contato}" />
+					</p:commandButton>
+
+					<p:commandButton icon="ui-icon-search"
+						oncomplete="PF('dialogContatoInfo').show();"
+						update=":formContatoInfo:panelContatoInfo">
+
+						<f:setPropertyActionListener target="#{MBContato.contato}"
+							value="#{item}" />
 					</p:commandButton>
 				</p:column>
 
@@ -251,6 +236,52 @@
 					<p:commandButton icon="ui-icon-close" value="Cancelar"
 						onclick="PF('dialogContatoEditar').hide();" />
 				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+
+		<!-- Dialogo Informações -->
+		<p:dialog widgetVar="dialogContatoInfo" closable="false"
+			draggable="false" resizable="false" header="Contato - Informações"
+			modal="true" appendTo="@(body)">
+
+			<h:form id="formContatoInfo">
+				<h:panelGrid id="panelContatoInfo" columns="2">
+					<h:outputLabel value="Nome:" />
+					<h:outputText value="#{MBContato.contato.nome}" />
+
+					<h:outputLabel value="Endereco:" />
+					<h:outputText value="#{MBContato.contato.endereco}" />
+
+					<h:outputLabel value="Telefone:" />
+					<h:outputText value="#{MBContato.contato.telefone}" />
+
+					<h:outputLabel value="Celular:" />
+					<h:outputText value="#{MBContato.contato.celular}" />
+
+					<h:outputLabel value="Email:" />
+					<h:outputText value="#{MBContato.contato.email}" />
+
+					<h:outputLabel value="Profissão:" />
+					<h:outputText value="#{MBContato.contato.profissao}" />
+
+					<h:outputLabel value="Empresa:" />
+					<h:outputText value="#{MBContato.contato.empresa}" />
+
+					<h:outputLabel value="Data Nascimento:" />
+					<h:outputText value="#{MBContato.contato.dataNascimento}" />
+
+					<h:outputLabel value="Data Cadastro" />
+					<h:outputText value="#{MBContato.contato.dataCadastro}" />
+
+					<h:outputLabel value="Observação" />
+					<h:outputText value="#{MBContato.contato.observacao}" />
+
+				</h:panelGrid>
+
+				<h:panelGrid columns="1">
+					<p:commandButton icon="ui-icon-close" value="Fechar"
+						onclick="PF('dialogoContatoInfo').hide();" />
+				</h:panelGrid>
 			</h:form>
 		</p:dialog>
 
