@@ -2,20 +2,20 @@
 # Agenda Java
 Esse arquivo descreve características e funcionalidades do Projeto agenda.
 
+## Funcionalidade:
+
+- O projeto tem como finalidade constrolar o fluxo de contatos pessoais e profissionais de seus usuários. 
+
 ## Tecnologias utilizadas:
 
-- O projeto tem como finalidade constrolar o fluxo de cadastro de usuários e contatos, controlar autenticação de login e geração de relatórios. 
-
-## Tecnologias utilizadas:
-
-- Windows
+- Windows 10
 - Eclispe
-- Java
-- JSF
+- Java 8
 - JavaScript
 - Ajax
 - Git
 - Junit
-- Primefaces
+- JSF
+- Primefaces 4.0
 - Jasper Report
 - MySQL
