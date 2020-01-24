@@ -148,8 +148,12 @@
 						oncomplete="verificaCampo(xhr, status, args, 'dialogContatoNovo', 'tabelaContatoListagem')"
 						update=":formContatoListagem:tabelaContato :mensagemGlobal" />
 
-					<p:commandButton icon="ui-icon-close" value="Cancelar"
-						onclick="PF('dialogoContatoNovo').hide();" />
+					<p:button value="Cancelar"
+						outcome="/pages/contato.xhtml?faces-redirect=true" />
+
+					<!--<p:commandButton icon="ui-icon-close" value="Cancelar" />
+						  onclick="PF('dialogoContatoNovo').hide();" -->
+
 				</h:panelGrid>
 			</h:form>
 		</p:dialog>
