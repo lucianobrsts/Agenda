@@ -102,7 +102,8 @@
 					<h:outputLabel value="Endereco:" />
 					<h:inputText maxlength="45" size="30"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
-						value="#{MBContato.contato.endereco}" required="true" requiredMessage="O Endereço do contato é obrigatório."/>
+						value="#{MBContato.contato.endereco}" required="true"
+						requiredMessage="O Endereço do contato é obrigatório." />
 
 					<h:outputLabel value="Telefone:" />
 					<p:inputMask id="telefoneFixo" mask="(99) 9999-9999" maxlength="14"
@@ -130,11 +131,13 @@
 
 					<h:outputLabel value="Data Nascimento:" />
 					<p:inputMask maxlength="10" size="15" mask="99/99/9999"
-						value="#{MBContato.contato.dataNascimento}" required="true" requiredMessage="A data de nascimento do contato é obrigatório."/>
+						value="#{MBContato.contato.dataNascimento}" required="true"
+						requiredMessage="A data de nascimento do contato é obrigatório." />
 
 					<h:outputLabel value="Data Cadastro" />
 					<p:inputMask mask="99/99/9999" size="15" maxlength="10"
-						value="#{MBContato.contato.dataCadastro}" required="true" requiredMessage="A data de cadastro do contato é obrigatório."/>
+						value="#{MBContato.contato.dataCadastro}" required="true"
+						requiredMessage="A data de cadastro do contato é obrigatório." />
 
 					<h:outputLabel value="Observação" />
 					<p:inputText maxlength="100" size="30"
@@ -193,7 +196,8 @@
 				<p:panelGrid columns="2" id="panelContatoEditar"
 					styleClass="panelEditar">
 					<h:outputLabel value="Código:" />
-					<h:outputText value="#{MBContato.contato.codigo}" />
+					<h:inputText value="#{MBContato.contato.codigo}" disabled="true"
+						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all" />
 
 					<h:outputLabel value="Nome:" />
 					<h:inputText maxlength="45" size="30"
