@@ -48,14 +48,6 @@
 						<f:setPropertyActionListener value="#{item}"
 							target="#{MBUsuario.usuario}" />
 					</p:commandButton>
-
-					<p:commandButton icon="ui-icon-search"
-						oncomplete="PF('dialogUsuarioInfo').show();"
-						update=":formUsuarioInfo:panelUsuarioInfo">
-
-						<f:setPropertyActionListener target="#{MBUsuario.usuario}"
-							value="#{item}" />
-					</p:commandButton>
 				</p:column>
 
 				<f:facet name="footer">
@@ -156,26 +148,6 @@
 				</h:panelGrid>
 			</h:form>
 		</p:dialog>
-
-		<!-- Dialogo Informações -->
-		<p:dialog widgetVar="dialogUsuarioInfo" closable="false"
-			draggable="false" resizable="false" header="Usuário - Informações"
-			modal="true" appendTo="@(body)">
-
-			<h:form id="formUsuarioInfo">
-				<h:panelGrid id="panelUsuarioInfo" columns="2">
-					<h:outputLabel value="Nome:" />
-					<h:outputText value="#{MBUsuario.usuario.nome}" />
-
-				</h:panelGrid>
-
-				<h:panelGrid columns="1">
-					<p:commandButton icon="ui-icon-close" value="Fechar"
-						onclick="PF('dialogoUsuarioInfo').hide();" />
-				</h:panelGrid>
-			</h:form>
-		</p:dialog>
-
 		<script>
 			function verificaCampo(xhr, status, args, dlg, tbl) {
 				if (args.validationFailed) {
