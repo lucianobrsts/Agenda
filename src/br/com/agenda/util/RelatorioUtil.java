@@ -40,6 +40,7 @@ public class RelatorioUtil {
 	public static final int RELATOIRO_HTML = 3;
 	public static final int RELATORIO_PLANILHA_OPEN_OFFICE = 4;
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public StreamedContent gerarRelatorio(HashMap parametroRelatorio, String nomeRelatorioJasper,
 			String nomeRelatorioSaida, int tipoRelatorio) throws UtilException {
 
