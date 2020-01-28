@@ -13,22 +13,20 @@
 
 	<ui:define name="conteudo">
 		<h:form id="formListagemContato">
-			<p:dataTable>
-				<f:facet name="header">
+			<f:facet name="header">
 					Relatório - Contato
 				</f:facet>
 
-				<p:separator />
+			<p:separator />
 
-				<h:panelGrid columns="2" id="panelBeneficioCadastro">
-					<p:commandButton value="Gerar Relatório" icon="ui-icon-document"
-						action="#{inscritoBean.geraRelatorioInscrito()}" ajax="false"
-						onclick="this.form.target='_blank'" />
+			<h:panelGrid columns="2" id="panelRelatorioContato">
+				<p:commandButton value="Gerar Relatório" icon="ui-icon-document"
+					action="#{MBContato.gerarRelatorioContato()}" ajax="false"
+					onclick="this.form.target='_blank'" />
 
-					<p:button value="Voltar"
-						outcome="/pages/principal.xhtml?faces-redirect=true" />
-				</h:panelGrid>
-			</p:dataTable>
+				<p:button value="Voltar"
+					outcome="/pages/principal.xhtml?faces-redirect=true" />
+			</h:panelGrid>
 		</h:form>
 	</ui:define>
 </ui:composition>

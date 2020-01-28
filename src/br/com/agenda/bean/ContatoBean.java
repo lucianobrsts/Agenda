@@ -3,6 +3,7 @@ package br.com.agenda.bean;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -15,6 +16,7 @@ import org.primefaces.model.StreamedContent;
 import br.com.agenda.dao.ContatoDAO;
 import br.com.agenda.domain.Contato;
 import br.com.agenda.util.JSFUtil;
+import br.com.agenda.util.Relatorio;
 import br.com.agenda.util.RelatorioUtil;
 
 @ManagedBean(name = "MBContato")
@@ -23,6 +25,7 @@ public class ContatoBean {
 	private Contato contato;
 	private ArrayList<Contato> itens;
 	private ArrayList<Contato> itensFiltrados;
+	private List<Contato> lista = new ArrayList<Contato>();
 	private StreamedContent arquivoRetorno;
 	private int tipoRelatorio;
 
@@ -101,6 +104,23 @@ public class ContatoBean {
 		return this.arquivoRetorno;
 	}
 
+	public void gerarRelatorioContato() {
+		Relatorio relatorio = new Relatorio();
+		ContatoDAO contatoDAO = new ContatoDAO();
+		
+		try {
+			lista = contatoDAO.listar();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		if (!lista.isEmpty()) {
+			relatorio.getRelatorioContato(lista);
+		} else {
+			JSFUtil.adicionarMensagemErro("Não há informações para gerar o relatório.");
+		}
+	}
+
 	public Contato getContato() {
 		return contato;
 	}
@@ -123,6 +143,14 @@ public class ContatoBean {
 
 	public void setItensFiltrados(ArrayList<Contato> itensFiltrados) {
 		this.itensFiltrados = itensFiltrados;
+	}
+
+	public List<Contato> getLista() {
+		return lista;
+	}
+
+	public void setLista(List<Contato> lista) {
+		this.lista = lista;
 	}
 
 	public int getTipoRelatorio() {
