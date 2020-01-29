@@ -15,8 +15,8 @@
 		<!-- Listagem de Contatos - DataTable -->
 		<h:form id="formContatoListagem">
 			<p:dataTable emptyMessage="Nenhum registro encontrado!"
-				widgetVar="tabelaContatoListagem" value="#{MBContato.itens}"
-				var="item" filteredValue="#{MBContato.itensFiltrados}" rows="10"
+				widgetVar="tabelaContatoListagem" value="#{contatoBean.itens}"
+				var="item" filteredValue="#{contatoBean.itensFiltrados}" rows="10"
 				paginator="true" id="tabelaContato">
 
 				<f:facet name="header">
@@ -56,7 +56,7 @@
 						oncomplete="PF('dialogContatoExcluir').show();"
 						update=":formContatoExcluir:panelContatoExcluir">
 
-						<f:setPropertyActionListener target="#{MBContato.contato}"
+						<f:setPropertyActionListener target="#{ContatoBean.contato}"
 							value="#{item}" />
 					</p:commandButton>
 
@@ -65,21 +65,21 @@
 						update=":formContatoEditar:panelContatoEditar">
 
 						<f:setPropertyActionListener value="#{item}"
-							target="#{MBContato.contato}" />
+							target="#{ContatoBean.contato}" />
 					</p:commandButton>
 
 					<p:commandButton icon="ui-icon-search"
 						oncomplete="PF('dialogContatoInfo').show();"
 						update=":formContatoInfo:panelContatoInfo">
 
-						<f:setPropertyActionListener target="#{MBContato.contato}"
+						<f:setPropertyActionListener target="#{ContatoBean.contato}"
 							value="#{item}" />
 					</p:commandButton>
 				</p:column>
 
 				<f:facet name="footer">
 					<p:commandButton icon="ui-icon-plus" value="Novo"
-						actionListener="#{MBContato.prepararNovo}"
+						actionListener="#{ContatoBean.prepararNovo}"
 						oncomplete="PF('dialogContatoNovo').show();"
 						update=":formContatoNovo:panelContatoNovo" />
 				</f:facet>
@@ -96,58 +96,58 @@
 					<h:outputLabel value="Nome:" />
 					<h:inputText maxlength="45" size="30"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
-						value="#{MBContato.contato.nome}" required="true"
+						value="#{ContatoBean.contato.nome}" required="true"
 						requiredMessage="O Nome do contato obrigatório!" />
 
 					<h:outputLabel value="Endereco:" />
 					<h:inputText maxlength="45" size="30"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
-						value="#{MBContato.contato.endereco}" required="true"
+						value="#{ContatoBean.contato.endereco}" required="true"
 						requiredMessage="O Endereço do contato é obrigatório." />
 
 					<h:outputLabel value="Telefone:" />
 					<p:inputMask id="telefoneFixo" mask="(99) 9999-9999" maxlength="14"
-						size="20" value="#{MBContato.contato.telefone}" />
+						size="20" value="#{ContatoBean.contato.telefone}" />
 
 					<h:outputLabel value="Celular:" />
 					<p:inputMask mask="(99) 99999-9999" maxlength="14" size="20"
-						value="#{MBContato.contato.celular}" required="true"
+						value="#{ContatoBean.contato.celular}" required="true"
 						requiredMessage="O número do Celular do contato obirgatório!" />
 
 					<h:outputLabel value="Email:" />
 					<h:inputText maxlength="45" size="30"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
-						value="#{MBContato.contato.email}" />
+						value="#{ContatoBean.contato.email}" />
 
 					<h:outputLabel value="Profissão:" />
 					<h:inputText maxlength="45" size="30"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
-						value="#{MBContato.contato.profissao}" />
+						value="#{ContatoBean.contato.profissao}" />
 
 					<h:outputLabel value="Empresa:" />
 					<h:inputText maxlength="45" size="30"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
-						value="#{MBContato.contato.empresa}" />
+						value="#{ContatoBean.contato.empresa}" />
 
 					<h:outputLabel value="Data Nascimento:" />
 					<p:inputMask maxlength="10" size="15" mask="99/99/9999"
-						value="#{MBContato.contato.dataNascimento}" required="true"
+						value="#{ContatoBean.contato.dataNascimento}" required="true"
 						requiredMessage="A data de nascimento do contato é obrigatório." />
 
 					<h:outputLabel value="Data Cadastro" />
 					<p:inputMask mask="99/99/9999" size="15" maxlength="10"
-						value="#{MBContato.contato.dataCadastro}" required="true"
+						value="#{ContatoBean.contato.dataCadastro}" required="true"
 						requiredMessage="A data de cadastro do contato é obrigatório." />
 
 					<h:outputLabel value="Observação" />
 					<p:inputText maxlength="100" size="30"
-						value="#{MBContato.contato.observacao}" />
+						value="#{ContatoBean.contato.observacao}" />
 
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
 					<p:commandButton icon="ui-icon-disk" value="Gravar"
-						actionListener="#{MBContato.novo}"
+						actionListener="#{ContatoBean.novo}"
 						oncomplete="verificaCampo(xhr, status, args, 'dialogContatoNovo', 'tabelaContatoListagem')"
 						update=":formContatoListagem:tabelaContato :mensagemGlobal" />
 
@@ -169,15 +169,15 @@
 			<h:form id="formContatoExcluir">
 				<h:panelGrid columns="2" id="panelContatoExcluir">
 					<h:outputLabel value="Código:" />
-					<h:outputText value="#{MBContato.contato.codigo}" />
+					<h:outputText value="#{ContatoBean.contato.codigo}" />
 
 					<h:outputLabel value="Nome:" />
-					<h:outputText value="#{MBContato.contato.nome}" />
+					<h:outputText value="#{ContatoBean.contato.nome}" />
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
 					<p:commandButton icon="ui-icon-trash" value="Excluir"
-						actionListener="#{MBContato.excluir}"
+						actionListener="#{ContatoBean.excluir}"
 						oncomplete="verificaCampo(xhr, status, args, 'dialogContatoExcluir', 'tabelaContatoListagem')"
 						update=":formContatoListagem:tabelaContato :mensagemGlobal" />
 
@@ -196,50 +196,50 @@
 				<p:panelGrid columns="2" id="panelContatoEditar"
 					styleClass="panelEditar">
 					<h:outputLabel value="Código:" />
-					<h:inputText value="#{MBContato.contato.codigo}" disabled="true"
+					<h:inputText value="#{ContatoBean.contato.codigo}" disabled="true"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all" />
 
 					<h:outputLabel value="Nome:" />
 					<h:inputText maxlength="45" size="30"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
-						value="#{MBContato.contato.nome}" />
+						value="#{ContatoBean.contato.nome}" />
 
 					<h:outputLabel value="Endereco:" />
 					<h:inputText maxlength="45" size="30"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
-						value="#{MBContato.contato.endereco}" />
+						value="#{ContatoBean.contato.endereco}" />
 
 					<h:outputLabel value="Telefone Fixo:" />
 					<p:inputMask mask="(99) 9999-9999" id="fonefixo" maxlength="13"
-						size="20" value="#{MBContato.contato.telefone}" />
+						size="20" value="#{ContatoBean.contato.telefone}" />
 
 					<h:outputLabel value="Celular:" />
 					<p:inputMask mask="(99) 99999-9999" maxlength="14" size="20"
-						value="#{MBContato.contato.celular}" />
+						value="#{ContatoBean.contato.celular}" />
 
 					<h:outputLabel value="Email:" />
 					<h:inputText maxlength="45" size="30"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
-						value="#{MBContato.contato.email}" />
+						value="#{ContatoBean.contato.email}" />
 
 					<h:outputLabel value="Profissão:" />
 					<h:inputText maxlength="45" size="30"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
-						value="#{MBContato.contato.profissao}" />
+						value="#{ContatoBean.contato.profissao}" />
 
 					<h:outputLabel value="Empresa:" />
 					<h:inputText maxlength="45" size="30"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
-						value="#{MBContato.contato.empresa}" />
+						value="#{ContatoBean.contato.empresa}" />
 
 					<h:outputLabel value="Data Nascimento:" />
 					<p:inputMask mask="99/99/9999" maxlength="10" size="15"
-						value="#{MBContato.contato.dataNascimento}" />
+						value="#{ContatoBean.contato.dataNascimento}" />
 				</p:panelGrid>
 
 				<p:panelGrid columns="2" styleClass="panelEditar">
 					<p:commandButton icon="ui-icon-pencil" value="Editar"
-						actionListener="#{MBContato.editar}"
+						actionListener="#{ContatoBean.editar}"
 						oncomplete="PF('dialogoContatoEditar').hide(); tabContato.clearFilters(); PF('tabelaContato'.clearFilters();"
 						update=":formContatoListagem:tabelaContato :mensagemGlobal" />
 
@@ -257,36 +257,36 @@
 			<h:form id="formContatoInfo">
 				<h:panelGrid id="panelContatoInfo" columns="2">
 					<h:outputLabel value="Nome:" />
-					<h:inputText value="#{MBContato.contato.nome}" disabled="true" />
+					<h:inputText value="#{ContatoBean.contato.nome}" disabled="true" />
 
 					<h:outputLabel value="Endereco:" />
-					<h:inputText value="#{MBContato.contato.endereco}" disabled="true" />
+					<h:inputText value="#{ContatoBean.contato.endereco}" disabled="true" />
 
 					<h:outputLabel value="Telefone:" />
-					<h:inputText value="#{MBContato.contato.telefone}" disabled="true" />
+					<h:inputText value="#{ContatoBean.contato.telefone}" disabled="true" />
 
 					<h:outputLabel value="Celular:" />
-					<h:inputText value="#{MBContato.contato.celular}" disabled="true" />
+					<h:inputText value="#{ContatoBean.contato.celular}" disabled="true" />
 
 					<h:outputLabel value="Email:" />
-					<h:inputText value="#{MBContato.contato.email}" disabled="true" />
+					<h:inputText value="#{ContatoBean.contato.email}" disabled="true" />
 
 					<h:outputLabel value="Profissão:" />
-					<h:inputText value="#{MBContato.contato.profissao}" disabled="true" />
+					<h:inputText value="#{ContatoBean.contato.profissao}" disabled="true" />
 
 					<h:outputLabel value="Empresa:" />
-					<h:inputText value="#{MBContato.contato.empresa}" disabled="true" />
+					<h:inputText value="#{ContatoBean.contato.empresa}" disabled="true" />
 
 					<h:outputLabel value="Data Nascimento:" />
-					<h:inputText value="#{MBContato.contato.dataNascimento}"
+					<h:inputText value="#{ContatoBean.contato.dataNascimento}"
 						disabled="true" />
 
 					<h:outputLabel value="Data Cadastro" />
-					<h:inputText value="#{MBContato.contato.dataCadastro}"
+					<h:inputText value="#{ContatoBean.contato.dataCadastro}"
 						disabled="true" />
 
 					<h:outputLabel value="Observação" />
-					<h:inputTextarea value="#{MBContato.contato.observacao}"
+					<h:inputTextarea value="#{ContatoBean.contato.observacao}"
 						disabled="true" />
 
 				</h:panelGrid>
