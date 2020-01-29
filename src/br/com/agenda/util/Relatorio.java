@@ -31,7 +31,7 @@ public class Relatorio {
 	}
 
 	public void getRelatorioContato(List<Contato> lista) {
-		stream = this.getClass().getResourceAsStream("relatorios/contato.jasper");
+		stream = this.getClass().getResourceAsStream("/relatorios/contato.jasper");
 		Map<String, Object> params = new HashMap<String, Object>();
 		baos = new ByteArrayOutputStream();
 

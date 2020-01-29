@@ -2,7 +2,7 @@
     <wb-module deploy-name="Agenda">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/relatorios"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/relatorios"/>
         <property name="context-root" value="Agenda"/>
         <property name="java-output-path" value="/Agenda/build/classes"/>
     </wb-module>
