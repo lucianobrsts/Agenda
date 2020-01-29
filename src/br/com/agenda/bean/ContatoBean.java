@@ -2,32 +2,24 @@ package br.com.agenda.bean;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-
-import org.primefaces.model.StreamedContent;
 
 import br.com.agenda.dao.ContatoDAO;
 import br.com.agenda.domain.Contato;
 import br.com.agenda.util.JSFUtil;
 import br.com.agenda.util.Relatorio;
-import br.com.agenda.util.RelatorioUtil;
 
-@ManagedBean(name = "MBContato")
+@ManagedBean
 @ViewScoped
 public class ContatoBean {
 	private Contato contato;
 	private ArrayList<Contato> itens;
 	private ArrayList<Contato> itensFiltrados;
 	private List<Contato> lista = new ArrayList<Contato>();
-	private StreamedContent arquivoRetorno;
-	private int tipoRelatorio;
 
 	@PostConstruct
 	public void prepararPesquisa() {
@@ -86,28 +78,10 @@ public class ContatoBean {
 		}
 	}
 
-	@SuppressWarnings("rawtypes")
-	public StreamedContent getArquivoRetorno() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		String nomeRelatorioJasper = "Contato";
-		String nomeRelatorioSaida = "_contato";
-		RelatorioUtil relatorioUtil = new RelatorioUtil();
-		HashMap parametroRelatorio = new HashMap();
-
-		try {
-			this.arquivoRetorno = relatorioUtil.gerarRelatorio(parametroRelatorio, nomeRelatorioJasper,
-					nomeRelatorioSaida, this.tipoRelatorio);
-		} catch (Exception e) {
-			context.addMessage(null, new FacesMessage(e.getCause().getMessage()));
-			return null;
-		}
-		return this.arquivoRetorno;
-	}
-
 	public void gerarRelatorioContato() {
 		Relatorio relatorio = new Relatorio();
 		ContatoDAO contatoDAO = new ContatoDAO();
-		
+
 		try {
 			lista = contatoDAO.listar();
 		} catch (SQLException e) {
@@ -151,18 +125,6 @@ public class ContatoBean {
 
 	public void setLista(List<Contato> lista) {
 		this.lista = lista;
-	}
-
-	public int getTipoRelatorio() {
-		return tipoRelatorio;
-	}
-
-	public void setTipoRelatorio(int tipoRelatorio) {
-		this.tipoRelatorio = tipoRelatorio;
-	}
-
-	public void setArquivoRetorno(StreamedContent arquivoRetorno) {
-		this.arquivoRetorno = arquivoRetorno;
 	}
 
 }
