@@ -37,7 +37,8 @@ public class Relatorio {
 
 		try {
 			JasperReport report = (JasperReport) JRLoader.loadObject(stream);
-			JasperPrint print = JasperFillManager.fillReport(report, params, new JRBeanCollectionDataSource(lista));
+			JasperPrint print = JasperFillManager.fillReport(report, params,
+					new JRBeanCollectionDataSource(lista, false));
 			JasperExportManager.exportReportToPdfStream(print, baos);
 
 			response.reset();
