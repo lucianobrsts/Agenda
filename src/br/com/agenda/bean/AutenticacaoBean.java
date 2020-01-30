@@ -14,7 +14,7 @@ import org.omnifaces.util.Messages;
 import br.com.agenda.dao.UsuarioDAO;
 import br.com.agenda.domain.Usuario;
 
-@ManagedBean(name = "MBAutenticar")
+@ManagedBean
 @SessionScoped
 public class AutenticacaoBean {
 

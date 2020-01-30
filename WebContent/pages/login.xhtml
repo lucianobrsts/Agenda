@@ -15,19 +15,19 @@
 					id="panelLoginUsuario">
 
 					<h:outputLabel value="Login:" />
-					<h:inputText value="#{MBAutenticar.usuario.nome}" required="true"
+					<h:inputText value="#{autenticacaoBean.usuario.nome}" required="true"
 						requiredMessage="O nome do usuário é obrigatório!"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all" />
 
 					<h:outputLabel value="Senha:" />
-					<p:password value="#{MBAutenticar.usuario.senha}" required="true"
+					<p:password value="#{autenticacaoBean.usuario.senha}" required="true"
 						requiredMessage="A senha do usuário é obrigatória!"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all" />
 				</p:panelGrid>
 
 				<h:panelGrid columns="2">
 					<p:commandButton icon="ui-icon-locked" value="Entrar"
-						actionListener="#{MBAutenticar.autenticar}"
+						actionListener="#{autenticacaoBean.autenticar}"
 						update=":mensagemGlobal :formLoginUsuario:panelLoginUsuario" />
 
 				</h:panelGrid>
