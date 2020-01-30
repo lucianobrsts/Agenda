@@ -13,20 +13,21 @@
 
 	<ui:define name="conteudo">
 		<h:form id="formListagemContato">
-			<f:facet name="header">
-					Relatório - Contato
+			<p:dataTable emptyMessage="" style="border:5px; border-color: white;">
+
+				<f:facet name="header">
+					Usuario - Relatórios
 				</f:facet>
 
-			<p:separator />
+				<p:column style="border:5px; color: gray;" headerText="teste"></p:column>
+			</p:dataTable>
 
-			<h:panelGrid columns="2" id="panelRelatorioContato">
-				<p:commandButton value="Gerar Relatório" icon="ui-icon-document"
-					action="#{contatoBean.gerarRelatorioContato()}" ajax="false"
-					onclick="this.form.target='_blank'" />
+			<p:commandButton value="Gerar Relatório" icon="ui-icon-document"
+				action="#{contatoBean.gerarRelatorioContato()}" ajax="false"
+				onclick="this.form.target='_blank'" />
 
-				<p:button value="Voltar"
-					outcome="/pages/principal.xhtml?faces-redirect=true" />
-			</h:panelGrid>
+			<p:button value="Voltar"
+				outcome="/pages/principal.xhtml?faces-redirect=true" />
 		</h:form>
 	</ui:define>
 </ui:composition>
