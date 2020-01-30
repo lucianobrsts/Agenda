@@ -11,7 +11,7 @@ import br.com.agenda.dao.UsuarioDAO;
 import br.com.agenda.domain.Usuario;
 import br.com.agenda.util.JSFUtil;
 
-@ManagedBean(name = "MBUsuario")
+@ManagedBean
 @ViewScoped
 public class UsuarioBean {
 	private Usuario usuario;

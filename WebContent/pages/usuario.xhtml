@@ -15,8 +15,8 @@
 	<ui:define name="conteudo">
 		<h:form id="formUsuarioListagem">
 			<p:dataTable emptyMessage="Nenhum registro encontrado!"
-				widgetVar="tabelaUsuarioListagem" value="#{MBUsuario.itens}"
-				var="item" filteredValue="#{MBUsuario.itensFiltrados}" rows="10"
+				widgetVar="tabelaUsuarioListagem" value="#{usuarioBean.itens}"
+				var="item" filteredValue="#{usuarioBean.itensFiltrados}" rows="10"
 				paginator="true" id="tabelaUsuario">
 
 				<f:facet name="header">
@@ -38,7 +38,7 @@
 						update=":formUsuarioExcluir:panelUsuarioExcluir">
 
 						<f:setPropertyActionListener value="#{item}"
-							target="#{MBUsuario.usuario}" />
+							target="#{usuarioBean.usuario}" />
 					</p:commandButton>
 
 					<p:commandButton icon="ui-icon-pencil"
@@ -46,13 +46,13 @@
 						update=":formUsuarioEditar:panelUsuarioEditar">
 
 						<f:setPropertyActionListener value="#{item}"
-							target="#{MBUsuario.usuario}" />
+							target="#{usuarioBean.usuario}" />
 					</p:commandButton>
 				</p:column>
 
 				<f:facet name="footer">
 					<p:commandButton icon="ui-icon-plus" value="Novo"
-						actionListener="#{MBUsuario.prepararNovo}"
+						actionListener="#{usuarioBean.prepararNovo}"
 						oncomplete="PF('dialogUsuarioNovo').show();"
 						update=":formUsuarioNovo:panelUsuarioNovo" />
 				</f:facet>
@@ -68,19 +68,19 @@
 					<h:outputLabel value="Nome:" />
 					<h:inputText maxlength="20" size="20" required="true"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
-						value="#{MBUsuario.usuario.nome}"
+						value="#{usuarioBean.usuario.nome}"
 						requiredMessage="Nome do usuário obrigatório!" />
 
 					<h:outputLabel value="Senha:" />
 					<p:password maxlength="8" size="8"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
-						value="#{MBUsuario.usuario.senha}" required="true"
+						value="#{usuarioBean.usuario.senha}" required="true"
 						requiredMessage="Senha do usuário obrigatório!" />
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
 					<p:commandButton icon="ui-icon-disk" value="Gravar"
-						actionListener="#{MBUsuario.novo}"
+						actionListener="#{usuarioBean.novo}"
 						oncomplete="verificaCampo(xhr, status, args, 'dialogUsuarioNovo', 'tabelaUsuarioListagem')"
 						update=":formUsuarioListagem:tabelaUsuario :mensagemGlobal" />
 
@@ -99,15 +99,15 @@
 				<h:panelGrid columns="2" id="panelUsuarioExcluir"
 					styleClass="panelEditar">
 					<h:outputLabel value="Código:" />
-					<h:outputText value="#{MBUsuario.usuario.codigo}" />
+					<h:outputText value="#{usuarioBean.usuario.codigo}" />
 
 					<h:outputLabel value="Nome:" />
-					<h:outputText value="#{MBUsuario.usuario.nome}" />
+					<h:outputText value="#{usuarioBean.usuario.nome}" />
 				</h:panelGrid>
 
 				<h:panelGrid columns="2" styleClass="panelEditar">
 					<p:commandButton icon="ui-icon-trash" value="Excluir"
-						actionListener="#{MBUsuario.excluir}"
+						actionListener="#{usuarioBean.excluir}"
 						oncomplete="verificaCampo(xhr, status, args, 'dialogUsuarioExcluir', 'tabelaUsuarioListagem')"
 						update=":formUsuarioListagem:tabelaUsuario :mensagemGlobal" />
 
@@ -126,20 +126,20 @@
 				<h:panelGrid columns="2" id="panelUsuarioEditar"
 					styleClass="panelEditar">
 					<h:outputLabel value="Código:" />
-					<h:outputText value="#{MBUsuario.usuario.codigo}" />
+					<h:outputText value="#{usuarioBean.usuario.codigo}" />
 
 					<h:outputLabel value="Nome:" />
-					<h:inputText value="#{MBUsuario.usuario.nome}"
+					<h:inputText value="#{usuarioBean.usuario.nome}"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all" />
 
 					<h:outputLabel value="Senha:" />
-					<p:password value="#{MBUsuario.usuario.senha}" redisplay="true"
+					<p:password value="#{usuarioBean.usuario.senha}" redisplay="true"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all" />
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
 					<p:commandButton icon="ui-icon-pencil" value="Editar"
-						actionListener="#{MBUsuario.editar}"
+						actionListener="#{usuarioBean.editar}"
 						oncomplete="verificaCampo(xhr, status, args, 'dialogUsuarioEditar', 'tabelaUsuarioListagem')"
 						update=":formUsuarioListagem:tabelaUsuario :mensagemGlobal" />
 
