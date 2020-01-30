@@ -56,7 +56,7 @@
 						oncomplete="PF('dialogContatoExcluir').show();"
 						update=":formContatoExcluir:panelContatoExcluir">
 
-						<f:setPropertyActionListener target="#{ContatoBean.contato}"
+						<f:setPropertyActionListener target="#{contatoBean.contato}"
 							value="#{item}" />
 					</p:commandButton>
 
@@ -65,21 +65,21 @@
 						update=":formContatoEditar:panelContatoEditar">
 
 						<f:setPropertyActionListener value="#{item}"
-							target="#{ContatoBean.contato}" />
+							target="#{contatoBean.contato}" />
 					</p:commandButton>
 
 					<p:commandButton icon="ui-icon-search"
 						oncomplete="PF('dialogContatoInfo').show();"
 						update=":formContatoInfo:panelContatoInfo">
 
-						<f:setPropertyActionListener target="#{ContatoBean.contato}"
+						<f:setPropertyActionListener target="#{contatoBean.contato}"
 							value="#{item}" />
 					</p:commandButton>
 				</p:column>
 
 				<f:facet name="footer">
 					<p:commandButton icon="ui-icon-plus" value="Novo"
-						actionListener="#{ContatoBean.prepararNovo}"
+						actionListener="#{contatoBean.prepararNovo}"
 						oncomplete="PF('dialogContatoNovo').show();"
 						update=":formContatoNovo:panelContatoNovo" />
 				</f:facet>
@@ -96,58 +96,58 @@
 					<h:outputLabel value="Nome:" />
 					<h:inputText maxlength="45" size="30"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
-						value="#{ContatoBean.contato.nome}" required="true"
+						value="#{contatoBean.contato.nome}" required="true"
 						requiredMessage="O Nome do contato obrigatório!" />
 
 					<h:outputLabel value="Endereco:" />
 					<h:inputText maxlength="45" size="30"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
-						value="#{ContatoBean.contato.endereco}" required="true"
+						value="#{contatoBean.contato.endereco}" required="true"
 						requiredMessage="O Endereço do contato é obrigatório." />
 
 					<h:outputLabel value="Telefone:" />
 					<p:inputMask id="telefoneFixo" mask="(99) 9999-9999" maxlength="14"
-						size="20" value="#{ContatoBean.contato.telefone}" />
+						size="20" value="#{contatoBean.contato.telefone}" />
 
 					<h:outputLabel value="Celular:" />
 					<p:inputMask mask="(99) 99999-9999" maxlength="14" size="20"
-						value="#{ContatoBean.contato.celular}" required="true"
+						value="#{contatoBean.contato.celular}" required="true"
 						requiredMessage="O número do Celular do contato obirgatório!" />
 
 					<h:outputLabel value="Email:" />
 					<h:inputText maxlength="45" size="30"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
-						value="#{ContatoBean.contato.email}" />
+						value="#{contatoBean.contato.email}" />
 
 					<h:outputLabel value="Profissão:" />
 					<h:inputText maxlength="45" size="30"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
-						value="#{ContatoBean.contato.profissao}" />
+						value="#{contatoBean.contato.profissao}" />
 
 					<h:outputLabel value="Empresa:" />
 					<h:inputText maxlength="45" size="30"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
-						value="#{ContatoBean.contato.empresa}" />
+						value="#{contatoBean.contato.empresa}" />
 
 					<h:outputLabel value="Data Nascimento:" />
 					<p:inputMask maxlength="10" size="15" mask="99/99/9999"
-						value="#{ContatoBean.contato.dataNascimento}" required="true"
+						value="#{contatoBean.contato.dataNascimento}" required="true"
 						requiredMessage="A data de nascimento do contato é obrigatório." />
 
 					<h:outputLabel value="Data Cadastro" />
 					<p:inputMask mask="99/99/9999" size="15" maxlength="10"
-						value="#{ContatoBean.contato.dataCadastro}" required="true"
+						value="#{contatoBean.contato.dataCadastro}" required="true"
 						requiredMessage="A data de cadastro do contato é obrigatório." />
 
 					<h:outputLabel value="Observação" />
 					<p:inputText maxlength="100" size="30"
-						value="#{ContatoBean.contato.observacao}" />
+						value="#{contatoBean.contato.observacao}" />
 
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
 					<p:commandButton icon="ui-icon-disk" value="Gravar"
-						actionListener="#{ContatoBean.novo}"
+						actionListener="#{contatoBean.novo}"
 						oncomplete="verificaCampo(xhr, status, args, 'dialogContatoNovo', 'tabelaContatoListagem')"
 						update=":formContatoListagem:tabelaContato :mensagemGlobal" />
 
@@ -169,15 +169,15 @@
 			<h:form id="formContatoExcluir">
 				<h:panelGrid columns="2" id="panelContatoExcluir">
 					<h:outputLabel value="Código:" />
-					<h:outputText value="#{ContatoBean.contato.codigo}" />
+					<h:outputText value="#{contatoBean.contato.codigo}" />
 
 					<h:outputLabel value="Nome:" />
-					<h:outputText value="#{ContatoBean.contato.nome}" />
+					<h:outputText value="#{contatoBean.contato.nome}" />
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
 					<p:commandButton icon="ui-icon-trash" value="Excluir"
-						actionListener="#{ContatoBean.excluir}"
+						actionListener="#{contatoBean.excluir}"
 						oncomplete="verificaCampo(xhr, status, args, 'dialogContatoExcluir', 'tabelaContatoListagem')"
 						update=":formContatoListagem:tabelaContato :mensagemGlobal" />
 
@@ -196,50 +196,50 @@
 				<p:panelGrid columns="2" id="panelContatoEditar"
 					styleClass="panelEditar">
 					<h:outputLabel value="Código:" />
-					<h:inputText value="#{ContatoBean.contato.codigo}" disabled="true"
+					<h:inputText value="#{contatoBean.contato.codigo}" disabled="true"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all" />
 
 					<h:outputLabel value="Nome:" />
 					<h:inputText maxlength="45" size="30"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
-						value="#{ContatoBean.contato.nome}" />
+						value="#{contatoBean.contato.nome}" />
 
 					<h:outputLabel value="Endereco:" />
 					<h:inputText maxlength="45" size="30"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
-						value="#{ContatoBean.contato.endereco}" />
+						value="#{contatoBean.contato.endereco}" />
 
 					<h:outputLabel value="Telefone Fixo:" />
 					<p:inputMask mask="(99) 9999-9999" id="fonefixo" maxlength="13"
-						size="20" value="#{ContatoBean.contato.telefone}" />
+						size="20" value="#{contatoBean.contato.telefone}" />
 
 					<h:outputLabel value="Celular:" />
 					<p:inputMask mask="(99) 99999-9999" maxlength="14" size="20"
-						value="#{ContatoBean.contato.celular}" />
+						value="#{contatoBean.contato.celular}" />
 
 					<h:outputLabel value="Email:" />
 					<h:inputText maxlength="45" size="30"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
-						value="#{ContatoBean.contato.email}" />
+						value="#{contatoBean.contato.email}" />
 
 					<h:outputLabel value="Profissão:" />
 					<h:inputText maxlength="45" size="30"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
-						value="#{ContatoBean.contato.profissao}" />
+						value="#{contatoBean.contato.profissao}" />
 
 					<h:outputLabel value="Empresa:" />
 					<h:inputText maxlength="45" size="30"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
-						value="#{ContatoBean.contato.empresa}" />
+						value="#{contatoBean.contato.empresa}" />
 
 					<h:outputLabel value="Data Nascimento:" />
 					<p:inputMask mask="99/99/9999" maxlength="10" size="15"
-						value="#{ContatoBean.contato.dataNascimento}" />
+						value="#{contatoBean.contato.dataNascimento}" />
 				</p:panelGrid>
 
 				<p:panelGrid columns="2" styleClass="panelEditar">
 					<p:commandButton icon="ui-icon-pencil" value="Editar"
-						actionListener="#{ContatoBean.editar}"
+						actionListener="#{contatoBean.editar}"
 						oncomplete="PF('dialogoContatoEditar').hide(); tabContato.clearFilters(); PF('tabelaContato'.clearFilters();"
 						update=":formContatoListagem:tabelaContato :mensagemGlobal" />
 
@@ -257,36 +257,36 @@
 			<h:form id="formContatoInfo">
 				<h:panelGrid id="panelContatoInfo" columns="2">
 					<h:outputLabel value="Nome:" />
-					<h:inputText value="#{ContatoBean.contato.nome}" disabled="true" />
+					<h:inputText value="#{contatoBean.contato.nome}" disabled="true" />
 
 					<h:outputLabel value="Endereco:" />
-					<h:inputText value="#{ContatoBean.contato.endereco}" disabled="true" />
+					<h:inputText value="#{contatoBean.contato.endereco}" disabled="true" />
 
 					<h:outputLabel value="Telefone:" />
-					<h:inputText value="#{ContatoBean.contato.telefone}" disabled="true" />
+					<h:inputText value="#{contatoBean.contato.telefone}" disabled="true" />
 
 					<h:outputLabel value="Celular:" />
-					<h:inputText value="#{ContatoBean.contato.celular}" disabled="true" />
+					<h:inputText value="#{contatoBean.contato.celular}" disabled="true" />
 
 					<h:outputLabel value="Email:" />
-					<h:inputText value="#{ContatoBean.contato.email}" disabled="true" />
+					<h:inputText value="#{contatoBean.contato.email}" disabled="true" />
 
 					<h:outputLabel value="Profissão:" />
-					<h:inputText value="#{ContatoBean.contato.profissao}" disabled="true" />
+					<h:inputText value="#{contatoBean.contato.profissao}" disabled="true" />
 
 					<h:outputLabel value="Empresa:" />
-					<h:inputText value="#{ContatoBean.contato.empresa}" disabled="true" />
+					<h:inputText value="#{contatoBean.contato.empresa}" disabled="true" />
 
 					<h:outputLabel value="Data Nascimento:" />
-					<h:inputText value="#{ContatoBean.contato.dataNascimento}"
+					<h:inputText value="#{contatoBean.contato.dataNascimento}"
 						disabled="true" />
 
 					<h:outputLabel value="Data Cadastro" />
-					<h:inputText value="#{ContatoBean.contato.dataCadastro}"
+					<h:inputText value="#{contatoBean.contato.dataCadastro}"
 						disabled="true" />
 
 					<h:outputLabel value="Observação" />
-					<h:inputTextarea value="#{ContatoBean.contato.observacao}"
+					<h:inputTextarea value="#{contatoBean.contato.observacao}"
 						disabled="true" />
 
 				</h:panelGrid>
