@@ -25,12 +25,12 @@
 
 			<f:facet name="options">
 				<p:outputLabel value="Olá: " />
-				<h:outputText value="#{MBAutenticar.usuarioLogado.nome}"
+				<h:outputText value="#{autenticacaoBean.usuarioLogado.nome}"
 					style="margin-right:20px;" />
 
 				<p:commandLink action="/pages/login.xhtml">
 					<p:commandButton type="button" value="Logout"
-						icon="ui-icon-circle-close" actionListener="#{MBAutenticar.sair}"
+						icon="ui-icon-circle-close" actionListener="#{autenticacaoBean.sair}"
 						ajax="false" style="margin-right:20px;" />
 				</p:commandLink>
 			</f:facet>

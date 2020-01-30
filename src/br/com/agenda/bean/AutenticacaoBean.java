@@ -64,7 +64,7 @@ public class AutenticacaoBean {
 	}
 
 	public void sair() {
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("MBAutenticar");
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("autenticacaoBean");
 	}
 
 }
