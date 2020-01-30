@@ -16,11 +16,13 @@
 
 					<h:outputLabel value="Login:" />
 					<h:inputText value="#{MBAutenticar.usuario.nome}" required="true"
-						requiredMessage="O nome do usuário é obrigatório!" />
+						requiredMessage="O nome do usuário é obrigatório!"
+						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all" />
 
 					<h:outputLabel value="Senha:" />
 					<p:password value="#{MBAutenticar.usuario.senha}" required="true"
-						requiredMessage="A senha do usuário é obrigatória!" />
+						requiredMessage="A senha do usuário é obrigatória!"
+						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all" />
 				</p:panelGrid>
 
 				<h:panelGrid columns="2">
