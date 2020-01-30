@@ -72,7 +72,7 @@
 						requiredMessage="Nome do usuário obrigatório!" />
 
 					<h:outputLabel value="Senha:" />
-					<h:inputSecret maxlength="8" size="8"
+					<p:password maxlength="8" size="8"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
 						value="#{MBUsuario.usuario.senha}" required="true"
 						requiredMessage="Senha do usuário obrigatório!" />
@@ -133,7 +133,7 @@
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all" />
 
 					<h:outputLabel value="Senha:" />
-					<h:inputText value="#{MBUsuario.usuario.senha}"
+					<p:password value="#{MBUsuario.usuario.senha}" redisplay="true"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all" />
 				</h:panelGrid>
 
