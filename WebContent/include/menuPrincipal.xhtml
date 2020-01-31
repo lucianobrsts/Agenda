@@ -28,10 +28,10 @@
 				<h:outputText value="#{autenticacaoBean.usuarioLogado.nome}"
 					style="margin-right:20px;" />
 
-				<p:commandLink action="/pages/login.xhtml">
+				<p:commandLink action="/pages/login.xhtml?faces-redirect=true">
 					<p:commandButton type="button" value="Logout"
 						icon="ui-icon-circle-close" actionListener="#{autenticacaoBean.sair}"
-						ajax="false" style="margin-right:20px;" />
+						ajax="false" style="margin-right:20px;"/>
 				</p:commandLink>
 			</f:facet>
 		</p:menubar>
