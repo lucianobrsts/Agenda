@@ -21,7 +21,7 @@ public class ContatoDAOTeste {
 		contato.setEmail("lucianobrsts@yahoo.com.br");
 		contato.setProfissao("Programador");
 		contato.setEmpresa("Pague Menos");
-		contato.setDataNascimento("20/07/1975");
+		contato.setNascimento("20/07/1975");
 		contato.setDataCadastro("06/04/2018");
 		contato.setObservacao("Estudante de Arquitetura de software na Uni7");
 
@@ -50,7 +50,7 @@ public class ContatoDAOTeste {
 		c.setEmail("lucianabrsts@yahoo.com.br");
 		c.setProfissao("Vendedora");
 		c.setEmpresa("Z'Dannys Variedades");
-		c.setDataNascimento("20/07/1975");
+		c.setNascimento("20/07/1975");
 		c.setObservacao("Estudante de desenvolvimento na FIC");
 
 		ContatoDAO contatodao = new ContatoDAO();

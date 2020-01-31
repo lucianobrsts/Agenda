@@ -13,7 +13,7 @@ ODU7]]>
 	agenda.contato.nome,
 	agenda.contato.celular,
 	agenda.contato.profissao,
-	agenda.contato.datanascimento
+	agenda.contato.nascimento
 FROM agenda.contato
 ORDER BY agenda.contato.nome ASC]]>
 	</queryString>
@@ -21,7 +21,7 @@ ORDER BY agenda.contato.nome ASC]]>
 	<field name="nome" class="java.lang.String"/>
 	<field name="celular" class="java.lang.String"/>
 	<field name="profissao" class="java.lang.String"/>
-	<field name="dataNascimento" class="java.lang.String"/>
+	<field name="nascimento" class="java.lang.String"/>
 	<background>
 		<band/>
 	</background>
@@ -129,7 +129,7 @@ ORDER BY agenda.contato.nome ASC]]>
 				<textElement textAlignment="Center">
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{dataNascimento}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nascimento}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

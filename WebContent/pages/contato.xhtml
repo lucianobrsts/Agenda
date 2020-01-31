@@ -131,7 +131,7 @@
 
 					<h:outputLabel value="Data Nascimento:" />
 					<p:inputMask maxlength="10" size="15" mask="99/99/9999"
-						value="#{contatoBean.contato.dataNascimento}" required="true"
+						value="#{contatoBean.contato.nascimento}" required="true"
 						requiredMessage="A data de nascimento do contato é obrigatório." />
 
 					<h:outputLabel value="Data Cadastro" />
@@ -234,7 +234,7 @@
 
 					<h:outputLabel value="Data Nascimento:" />
 					<p:inputMask mask="99/99/9999" maxlength="10" size="15"
-						value="#{contatoBean.contato.dataNascimento}" />
+						value="#{contatoBean.contato.nascimento}" />
 				</p:panelGrid>
 
 				<p:panelGrid columns="2" styleClass="panelEditar">
@@ -288,7 +288,7 @@
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all" />
 
 					<h:outputLabel value="Data Nascimento:" />
-					<h:inputText value="#{contatoBean.contato.dataNascimento}"
+					<h:inputText value="#{contatoBean.contato.nascimento}"
 						disabled="true"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all" />
 

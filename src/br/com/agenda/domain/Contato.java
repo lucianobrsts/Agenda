@@ -10,7 +10,7 @@ public class Contato {
 	private String profissao;
 	private String email;
 	private String empresa;
-	private String dataNascimento;
+	private String nascimento;
 	private String dataCadastro;
 	private String observacao;
 
@@ -43,7 +43,7 @@ public class Contato {
 	public String toString() {
 		return "Contato [codigo=" + codigo + ", nome=" + nome + ", endereco=" + endereco + ", telefone=" + telefone
 				+ ", celular=" + celular + ", profissao=" + profissao + ", email=" + email + ", empresa=" + empresa
-				+ ", dataNascimento=" + dataNascimento + ", dataCadastro=" + dataCadastro + ", observacao=" + observacao
+				+ ", dataNascimento=" + nascimento + ", dataCadastro=" + dataCadastro + ", observacao=" + observacao
 				+ "]";
 	}
 
@@ -111,12 +111,12 @@ public class Contato {
 		this.empresa = empresa;
 	}
 
-	public String getDataNascimento() {
-		return dataNascimento;
+	public String getNascimento() {
+		return nascimento;
 	}
 
-	public void setDataNascimento(String dataNascimento) {
-		this.dataNascimento = dataNascimento;
+	public void setNascimento(String nascimento) {
+		this.nascimento = nascimento;
 	}
 
 	public String getDataCadastro() {

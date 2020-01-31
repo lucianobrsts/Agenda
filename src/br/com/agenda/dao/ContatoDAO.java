@@ -14,7 +14,7 @@ public class ContatoDAO {
 	public void salvar(Contato c) throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append("INSERT INTO contato ");
-		sql.append("(nome, endereco, telefone, celular, profissao, email, empresa, datanascimento, datacadastro, observacao) ");
+		sql.append("(nome, endereco, telefone, celular, profissao, email, empresa, nascimento, datacadastro, observacao) ");
 		sql.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ? )");
 
 		Connection conexao = ConexaoFactory.conectar();
@@ -28,7 +28,7 @@ public class ContatoDAO {
 		comando.setString(5, c.getProfissao());
 		comando.setString(6, c.getEmail());
 		comando.setString(7, c.getEmpresa());
-		comando.setString(8, c.getDataNascimento());
+		comando.setString(8, c.getNascimento());
 		comando.setString(9, c.getDataCadastro());
 		comando.setString(10, c.getObservacao());
 
@@ -53,7 +53,7 @@ public class ContatoDAO {
 		StringBuilder sql = new StringBuilder();
 		sql.append("UPDATE agenda.contato ");
 		sql.append(
-				"SET nome = ?, endereco = ?, telefone = ?, celular = ?, profissao = ?, email = ?, empresa = ?, dataNascimento = ?, dataCadastro = ?, observacao = ? ");
+				"SET nome = ?, endereco = ?, telefone = ?, celular = ?, profissao = ?, email = ?, empresa = ?, nascimento = ?, dataCadastro = ?, observacao = ? ");
 		sql.append("WHERE codigo = ?");
 
 		Connection conexao = ConexaoFactory.conectar();
@@ -66,7 +66,7 @@ public class ContatoDAO {
 		comando.setString(5, c.getProfissao());
 		comando.setString(6, c.getEmail());
 		comando.setString(7, c.getEmpresa());
-		comando.setString(8, c.getDataNascimento());
+		comando.setString(8, c.getNascimento());
 		comando.setString(9, c.getDataCadastro());
 		comando.setString(10, c.getObservacao());
 		comando.setLong(11, c.getCodigo());
@@ -101,7 +101,7 @@ public class ContatoDAO {
 	public ArrayList<Contato> listar() throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append(
-				"SELECT codigo, nome, endereco, telefone, celular, profissao, email, empresa, dataNascimento, datacadastro, observacao ");
+				"SELECT codigo, nome, endereco, telefone, celular, profissao, email, empresa, nascimento, datacadastro, observacao ");
 		sql.append("FROM agenda.contato ");
 		sql.append("ORDER BY nome ASC ");
 
@@ -123,7 +123,7 @@ public class ContatoDAO {
 			c.setProfissao(resultado.getString("profissao"));
 			c.setEmail(resultado.getString("email"));
 			c.setEmpresa(resultado.getString("empresa"));
-			c.setDataNascimento(resultado.getString("dataNascimento"));
+			c.setNascimento(resultado.getString("nascimento"));
 			c.setDataCadastro(resultado.getString("datacadastro"));
 			c.setObservacao(resultado.getString("observacao"));
 
@@ -135,7 +135,7 @@ public class ContatoDAO {
 	public ArrayList<Contato> buscarPorNome(Contato c) throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append(
-				"SELECT codigo, nome, endereco, telefone, celular, profissao, email, empresa, dataNascimento, dataCadastro, observacao ");
+				"SELECT codigo, nome, endereco, telefone, celular, profissao, email, empresa, nascimento, dataCadastro, observacao ");
 		sql.append("FROM agenda.contato ");
 		sql.append("WHERE nome LIKE ?");
 		sql.append("ORDER BY nome ASC ");
@@ -159,7 +159,7 @@ public class ContatoDAO {
 			item.setProfissao(resultado.getString("profissao"));
 			item.setEmail(resultado.getString("email"));
 			item.setEmpresa(resultado.getString("empresa"));
-			item.setDataNascimento(resultado.getString("dataNascimento"));
+			item.setNascimento(resultado.getString("nascimento"));
 			item.setDataCadastro(resultado.getString("dataCadastro"));
 			item.setObservacao(resultado.getString("observacao"));
 

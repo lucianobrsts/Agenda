@@ -50,7 +50,6 @@ public class Relatorio {
 			response.getOutputStream().close();
 
 			context.getResponseComplete();
-			context.renderResponse();
 		} catch (JRException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
