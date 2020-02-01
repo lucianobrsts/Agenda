@@ -97,7 +97,11 @@
 					<h:inputText maxlength="45" size="30"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
 						value="#{contatoBean.contato.nome}" required="true"
-						requiredMessage="O Nome do contato obrigatório!" />
+						requiredMessage="O Nome do contato obrigatório!"
+						validatorMessage="Tamanho mínimo do campo nome - 3 caracteres.">
+
+						<f:validateLength minimum="3" />
+					</h:inputText>
 
 					<h:outputLabel value="Endereco:" />
 					<h:inputText maxlength="45" size="30"
@@ -207,7 +211,11 @@
 					<h:outputLabel value="Nome:" />
 					<h:inputText maxlength="45" size="30"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
-						value="#{contatoBean.contato.nome}" />
+						value="#{contatoBean.contato.nome}"
+						validatorMessage="Tamanho mínimo do campo nome - 3 caracteres.">
+
+						<f:validateLength minimum="3" />
+					</h:inputText>
 
 					<h:outputLabel value="Endereco:" />
 					<h:inputText maxlength="45" size="30"
@@ -223,7 +231,8 @@
 						value="#{contatoBean.contato.celular}" />
 
 					<h:outputLabel value="Email:" />
-					<h:inputText maxlength="45" size="30" validatorMessage="Email inválido."
+					<h:inputText maxlength="45" size="30"
+						validatorMessage="Email inválido."
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
 						value="#{contatoBean.contato.email}">
 

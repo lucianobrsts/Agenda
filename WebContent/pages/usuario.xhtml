@@ -66,16 +66,24 @@
 			<h:form id="formUsuarioNovo">
 				<h:panelGrid id="panelUsuarioNovo" columns="2">
 					<h:outputLabel value="Nome:" />
-					<h:inputText maxlength="20" size="20" required="true"
+					<h:inputText maxlength="20" size="20"
+						validatorMessage="Tamanho mínimo do campo nome - 3 caracteres."
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
-						value="#{usuarioBean.usuario.nome}"
-						requiredMessage="Nome do usuário obrigatório!" />
+						value="#{usuarioBean.usuario.nome}" required="true"
+						requiredMessage="Nome do usuário obrigatório!">
+
+						<f:validateLength minimum="3" />
+					</h:inputText>
 
 					<h:outputLabel value="Senha:" />
 					<p:password maxlength="8" size="8"
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
 						value="#{usuarioBean.usuario.senha}" required="true"
-						requiredMessage="Senha do usuário obrigatório!" />
+						validatorMessage="Tamanho mínimo do campo senha - 8 caracteres."
+						requiredMessage="Senha do usuário obrigatório!">
+
+						<f:validateLength minimum="8" />
+					</p:password>
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
@@ -130,7 +138,11 @@
 
 					<h:outputLabel value="Nome:" />
 					<h:inputText value="#{usuarioBean.usuario.nome}"
-						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all" />
+						validatorMessage="Tamanho mínimo do campo nome - 3 caracteres."
+						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all">
+
+						<f:validateLength minimum="3" />
+					</h:inputText>
 
 					<h:outputLabel value="Senha:" />
 					<p:password value="#{usuarioBean.usuario.senha}" redisplay="true"
