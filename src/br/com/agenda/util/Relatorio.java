@@ -30,6 +30,7 @@ public class Relatorio {
 		this.response = (HttpServletResponse) context.getExternalContext().getResponse();
 	}
 
+	@SuppressWarnings("static-access")
 	public void getRelatorioContato(List<Contato> lista) {
 		stream = this.getClass().getResourceAsStream("/relatorios/contato.jasper");
 		Map<String, Object> params = new HashMap<String, Object>();

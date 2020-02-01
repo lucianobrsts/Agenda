@@ -116,8 +116,13 @@
 
 					<h:outputLabel value="Email:" />
 					<h:inputText maxlength="45" size="30"
+						validatorMessage="Email inválido."
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
-						value="#{contatoBean.contato.email}" />
+						value="#{contatoBean.contato.email}">
+
+						<f:validateRegex
+							pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+					</h:inputText>
 
 					<h:outputLabel value="Profissão:" />
 					<h:inputText maxlength="45" size="30"
@@ -218,9 +223,13 @@
 						value="#{contatoBean.contato.celular}" />
 
 					<h:outputLabel value="Email:" />
-					<h:inputText maxlength="45" size="30"
+					<h:inputText maxlength="45" size="30" validatorMessage="Email inválido."
 						class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all"
-						value="#{contatoBean.contato.email}" />
+						value="#{contatoBean.contato.email}">
+
+						<f:validateRegex
+							pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+					</h:inputText>
 
 					<h:outputLabel value="Profissão:" />
 					<h:inputText maxlength="45" size="30"
