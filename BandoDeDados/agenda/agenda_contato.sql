@@ -31,12 +31,12 @@ CREATE TABLE `contato` (
   `profissao` varchar(50) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   `empresa` varchar(50) DEFAULT NULL,
-  `datanascimento` varchar(10) NOT NULL,
+  `nascimento` varchar(10) NOT NULL,
   `datacadastro` varchar(10) NOT NULL,
   `observacao` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`codigo`),
   UNIQUE KEY `celular_UNIQUE` (`celular`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,7 @@ CREATE TABLE `contato` (
 
 LOCK TABLES `contato` WRITE;
 /*!40000 ALTER TABLE `contato` DISABLE KEYS */;
-INSERT INTO `contato` VALUES (1,'Luciano Brito dos Santos','Rua Goiás, 674','(85) 3482-3844','(85) 98888-0281','DevJava','lucianobrsts@yahoo.com.br','Freelancer','20/07/1975','21/01/2020','Tudo funcionando e continuará funcionando'),(2,'Francisco Carlos','Rua Amazonas 456','(85) 3482-3344','(85) 98765-4545','Estudante','fcocarlos@gmail.com','','12/05/2000','22/01/2020','Nenhuma até o momento amizade começando.');
+INSERT INTO `contato` VALUES (1,'Luciano Brito dos Santos','Rua Goiás, 674','(85) 3482-3844','(85) 98888-0281','DevJava','lucianobrsts@yahoo.com.br','Freelancer','20/07/1975','21/01/2020','Tudo funcionando e continuará funcionando'),(2,'Francisco Carlos','Rua Amazonas 456','(85) 3482-3344','(85) 98765-4545','Estudante','fcocarlos@gmail.com','','12/05/2000','22/01/2020','Nenhuma até o momento amizade começando.'),(3,'Antonio José da Silva','Rua Tabajaras, 700','(85) 3482-3566','(85) 98888-2134','Soldador','antoniojose@hotmail.com','Soldas e CIA','27/12/1980','30/01/2020','Nenhuma a declarar.'),(5,'David Almeida','Alameda dos anjos, 112','(85) 3227-8493','(85) 98821-2345','Professor','dameida@gmail.com','Sesc','15/02/2000','01/02/2020','Procurando emprego....');
 /*!40000 ALTER TABLE `contato` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -58,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-23 21:38:24
+-- Dump completed on 2020-02-01 16:42:03
