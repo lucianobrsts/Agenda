@@ -49,7 +49,7 @@ public class Relatorio {
 			response.getOutputStream().flush();
 			response.getOutputStream().close();
 
-			context.getResponseComplete();
+			context.getCurrentInstance().responseComplete();
 		} catch (JRException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
