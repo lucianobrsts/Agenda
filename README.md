@@ -2,8 +2,6 @@
 ## Agenda Java
 > O projeto Agenda foi idealizado para conhecer e firmar conceitos sobre a linguagem Java. Faz uso de tecnologias essênciais para automação básica de processos e alguns frameworks de ponta do mercado DevJava . 
 
-<img src="/WebContent/screenshot/Principal.PNG/" width="500">
-
 #### Tecnologias utilizadas:
 
 - Windows 10
