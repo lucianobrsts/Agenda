@@ -66,21 +66,21 @@ ORDER BY agenda.contato.nome ASC]]>
 				<textElement textAlignment="Center">
 					<font size="13" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Nome]]></text>
+				<text><![CDATA[                  Nome]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="285" y="0" width="90" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="fa9e6fb8-55b5-48ba-9af4-99ade180cd14"/>
 				<textElement textAlignment="Center">
 					<font size="13" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Celular]]></text>
+				<text><![CDATA[       Celular]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="375" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="0cca9863-0898-4da8-a2cd-83404d082f84"/>
 				<textElement textAlignment="Center">
 					<font size="13" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Profissão]]></text>
+				<text><![CDATA[      Profissão]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="467" y="0" width="88" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="a5b80b4f-912a-4558-99cf-1d83c8b744fb"/>
@@ -97,14 +97,14 @@ ORDER BY agenda.contato.nome ASC]]>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="42f0efe2-8b22-4189-8e30-9a2eebc40ac9"/>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="0" y="0" width="75" height="20" uuid="73a31e02-b3e4-421e-9328-20866c2b1779"/>
+				<reportElement x="20" y="0" width="55" height="20" uuid="73a31e02-b3e4-421e-9328-20866c2b1779"/>
 				<textElement textAlignment="Center">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="75" y="0" width="210" height="20" uuid="831a29d3-d33e-48a1-918c-e181a9711273"/>
+				<reportElement x="75" y="0" width="184" height="20" uuid="831a29d3-d33e-48a1-918c-e181a9711273"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
@@ -118,14 +118,14 @@ ORDER BY agenda.contato.nome ASC]]>
 				<textFieldExpression><![CDATA[$F{celular}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="375" y="0" width="92" height="20" uuid="1498decc-a936-457e-bdc4-de76b30e0588"/>
+				<reportElement x="390" y="0" width="76" height="20" uuid="1498decc-a936-457e-bdc4-de76b30e0588"/>
 				<textElement textAlignment="Center">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{profissao}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="467" y="0" width="88" height="20" uuid="348b940c-9310-490e-a9de-731d381d1006"/>
+				<reportElement x="480" y="0" width="74" height="20" uuid="348b940c-9310-490e-a9de-731d381d1006"/>
 				<textElement textAlignment="Center">
 					<font size="12"/>
 				</textElement>
